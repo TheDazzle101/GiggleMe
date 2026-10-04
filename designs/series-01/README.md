@@ -6,6 +6,8 @@
 
 Ten tees: the **GiggleMe logo** (with a double-height G and M) on the front left chest, and a stacked saying across the back at Printful's biggest back size. Front and back letters match: a clean, flat **matte grey** inside every letter, with a hard **bold black outline** and a **matte-gold outer outline**, plus a black drop shadow. Every letter on a back is the same size, every line starts at the same left edge, and the block is centered top to bottom.
 
+**Ready to list:** the first two shirts have store photos, ads and copy-paste listings in [SHOPIFY.md](SHOPIFY.md).
+
 ## Files
 
 | File | Where it prints | Size |
