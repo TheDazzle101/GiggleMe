@@ -21,14 +21,16 @@ const FONTS = `@font-face{font-family:"Rye";src:url(${font("rye", "rye-latin-400
 @font-face{font-family:"Inter";font-weight:600;src:url(${font("inter", "inter-latin-600-normal.woff2")})}`;
 
 // Headline lettering in the shirt-back style: grey fill, hard black ring, gold outer ring, black shadow.
-function inkedText(lines, x, y, size, lead) {
+function inkedText(lines, x, y, size, lead, fill = "#74787E") {
   const t = lines.map((l, i) => `<text x="${x}" y="${y + i * size * lead}" font-family="Rye" font-size="${size}">${l}</text>`).join("");
   const L = (a, dx = 0, dy = 0) => `<g ${a} transform="translate(${dx} ${dy})">${t}</g>`;
   return L(`fill="${LOGO.black}"`, size * 0.06, size * 0.06) +
     L(`fill="none" stroke="${LOGO.gold}" stroke-width="${size * 0.13}" stroke-linejoin="round"`) +
     L(`fill="none" stroke="${LOGO.black}" stroke-width="${size * 0.075}" stroke-linejoin="round"`) +
-    L(`fill="#74787E"`);
+    L(`fill="${fill}"`);
 }
+// Shrink a block to a max width (anchored at its top-left) once fonts have loaded.
+const fit = (maxW, inner) => `<g class="fitw" data-w="${maxW}">${inner}</g>`;
 const label = (x, y, size, text, fill, weight = 600, anchor = "start", ls = 0) =>
   `<text x="${x}" y="${y}" text-anchor="${anchor}" font-family="Inter" font-weight="${weight}" font-size="${size}" letter-spacing="${ls}" fill="${fill}">${text}</text>`;
 const button = (x, y, w, h, text, size) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${h / 2}" fill="${LOGO.gold}"/>` +
@@ -58,18 +60,16 @@ const trio = (cx, cy, s) =>
   place(cx + 560 * s, cy + 60 * s, s * 0.8, 9, tee("back", SHIRTS.black, back("03-lidda-sun"), "r")) +
   place(cx, cy, s, 0, tee("back", SHIRTS.black, back("01-lidda-sno"), "c"));
 
-const HEAD = ["SHIRTS THAT", "SAY IT", "FOR YOU."];
+const HEAD = ["WE LOVE TO CREATE", "THOSE CLEVERLY", "VICIOUS GIGGLES..."];
+const ALLDAY = (x, y, size) => `<g transform="rotate(-4 ${x} ${y})">${inkedText(["ALLL DAAAYYYY!"], x, y, size, 1, LOGO.gold)}</g>`;
 const BANNERS = [
   // [file, w, h, body]
-  ["hero-desktop", 2880, 1280, (w, h) => stage(w, h, 2120, 640) + trio(2120, 690, 0.78) +
-    inkedText(HEAD, 200, 390, 140, 1.14) +
-    label(206, 810, 54, "Read it out loud. Try not to laugh.", "#FFFFFF", 400) +
-    button(206, 880, 520, 120, "SHOP THE DROP", 44) +
-    label(206, 1110, 40, "viciously.", LOGO.gold, 400)],
-  ["hero-desktop-no-text", 2880, 1280, (w, h) => stage(w, h, 2120, 640) + trio(2120, 690, 0.78)],
-  ["hero-mobile", 1080, 1350, (w, h) => stage(w, h, 540, 930) + trio(540, 960, 0.5) +
-    inkedText(HEAD, 90, 190, 118, 1.1) +
-    label(96, 520, 40, "Read it out loud. Try not to laugh.", "#FFFFFF", 400)],
+  ["hero-desktop", 2880, 1280, (w, h) => stage(w, h, 2230, 640) + trio(2230, 690, 0.72) +
+    fit(1240, inkedText(HEAD, 200, 380, 112, 1.16) + ALLDAY(196, 920, 178) +
+      button(206, 1030, 520, 120, "SHOP THE DROP", 44) + label(206, 1250, 40, "viciously.", LOGO.gold, 400))],
+  ["hero-desktop-no-text", 2880, 1280, (w, h) => stage(w, h, 2230, 640) + trio(2230, 690, 0.72)],
+  ["hero-mobile", 1080, 1350, (w, h) => stage(w, h, 540, 980) + trio(540, 1010, 0.46) +
+    fit(910, inkedText(HEAD, 90, 160, 80, 1.16) + ALLDAY(86, 545, 128))],
 ];
 
 const browser = await chromium.launch();
@@ -87,6 +87,7 @@ const doc = (w, h, svg) => `<!doctype html><html><head><meta charset="utf-8"><st
 <svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">${svg}</svg>
 <script>Promise.all(['100px Rye','100px Yellowtail','400 40px Inter','600 40px Inter'].map(f=>document.fonts.load(f)))
 .then(()=>Promise.all([...document.querySelectorAll('image')].map(i=>new Promise(r=>{const m=new Image();m.onload=m.onerror=r;m.src=i.getAttribute('href')}))))
+.then(()=>{for(const g of document.querySelectorAll('g.fitw')){const b=g.getBBox(),k=Math.min(1,g.dataset.w/b.width);g.setAttribute('transform','translate('+b.x*(1-k)+' '+b.y*(1-k)+') scale('+k+')')}})
 .then(()=>setTimeout(()=>document.body.dataset.ready=1,300))</script></body></html>`;
 
 for (const [name, w, h, body] of BANNERS) {
