@@ -10,7 +10,7 @@ Ten tees: the **GiggleMe logo** (with a double-height G and M) on the front left
 
 | File | Where it prints | Size |
 |---|---|---|
-| `logo-left-chest.png` | **Front, left chest** (same file on every shirt): GiggleMe with the first G and the M at double height, in the same grey, black and gold style as the backs | 1200 × 267 px · 4 in wide · 300 DPI |
+| `logo-left-chest.png` | **Front, left chest** (same file on every shirt): GiggleMe with the first G and the M at double height, in the retro script with a dark grey fill, black and gold outline | 1200 × 522 px · 4 in wide · 300 DPI |
 | `<design>/back-print.png` | **Back**, oversize | 4500 × 5400 px · 15 × 18 in · 300 DPI |
 | `<design>/mockup.png` | Preview only | |
 
