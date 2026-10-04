@@ -4,17 +4,17 @@
 
 ![Front and back](../previews/series-01-front-back.jpg)
 
-Ten tees: the **GiggleMe logo** (with a double-height G and M) on the front left chest, and a stacked saying across the back at Printful's biggest back size. Front and back letters match: tattoo-style art inside each letter in **royal blue and royal purple** (blue waves, purple flames, lilac lightning; no roses or stars), a deep purple shadow, and a bold **matte-gold outline**. Every letter on a back is the same size, every line starts at the same left edge, and the block is centered top to bottom.
+Ten tees: the **GiggleMe logo** (with a double-height G and M) on the front left chest, and a stacked saying across the back at Printful's biggest back size. Front and back letters match: a clean, flat **matte grey** inside every letter, with a hard **bold black outline** and a **matte-gold outer outline**, plus a black drop shadow. Every letter on a back is the same size, every line starts at the same left edge, and the block is centered top to bottom.
 
 ## Files
 
 | File | Where it prints | Size |
 |---|---|---|
-| `logo-left-chest.png` | **Front, left chest** (same file on every shirt): GiggleMe with the first G and the M at double height, in the same royal/gold style as the backs | 1200 × 267 px · 4 in wide · 300 DPI |
+| `logo-left-chest.png` | **Front, left chest** (same file on every shirt): GiggleMe with the first G and the M at double height, in the same grey, black and gold style as the backs | 1200 × 267 px · 4 in wide · 300 DPI |
 | `<design>/back-print.png` | **Back**, oversize | 4500 × 5400 px · 15 × 18 in · 300 DPI |
 | `<design>/mockup.png` | Preview only | |
 
-This royal-and-gold look is made for **black and charcoal** shirts (navy works but the royal blue blends in more). On white or cream the gold outline reads softer.
+This grey, black and gold look works on **black, charcoal, navy and heather** shirts. On white or cream the black outline carries it and the gold reads softer.
 
 ## Set it up in Printful
 

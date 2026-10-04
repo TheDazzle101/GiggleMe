@@ -77,6 +77,8 @@ function inked(svg, lines, o){
   if(o.outline){
     // Bold outline sits BEHIND the filled letters, so only its outer half shows; a fine dark edge keeps it crisp.
     svg.insertBefore(layer({fill:"none",stroke:o.outline,"stroke-linejoin":"round"},0,0,o.outlineK),art);
+    // Optional second ring: e.g. hard black inside the gold.
+    if(o.inline)svg.insertBefore(layer({fill:"none",stroke:o.inline,"stroke-linejoin":"round"},0,0,o.inlineK),art);
     svg.appendChild(layer({fill:"none",stroke:"#121212","stroke-linejoin":"round"},0,0,0.01));
   } else svg.appendChild(layer({fill:"none",stroke:"#121212","stroke-linejoin":"round"},0,0,0.026));
   if(!o.outline)svg.appendChild(layer({fill:"none",stroke:"#FFFFFF","stroke-linejoin":"round",opacity:".6"},-sh*0.18,-sh*0.18,0.011));
@@ -129,8 +131,8 @@ execFileSync("node", [join(here, "chest-logo.mjs")]); // first G and M at double
 // One letter size, every line starts at the same left edge, block centered top to bottom.
 for (const s of SAYINGS) {
   const dir = join(out, s.slug), back = join(dir, "back-print.png");
-  await render(page(4500, 5400, artSheet(4500, 5400, 2.3), `
-    inked(document.getElementById("s"),${JSON.stringify(s.lines)},{id:"c",cx:2250,cy:2700,width:4380,height:5000,align:"left",shadow:"${ROYAL.shadow}",outline:"${ROYAL.gold}",outlineK:0.075});`),
+  await render(page(4500, 5400, `<rect width="4500" height="5400" fill="${ROYAL.grey}"/>`, `
+    inked(document.getElementById("s"),${JSON.stringify(s.lines)},{id:"c",cx:2250,cy:2700,width:4380,height:5000,align:"left",shadow:"${ROYAL.black}",outline:"${ROYAL.gold}",outlineK:0.13,inline:"${ROYAL.black}",inlineK:0.075});`),
     back, 4500, 5400);
   await render(mockHTML("#1C1C1E", pathToFileURL(gmFile).href, pathToFileURL(back).href), join(dir, "mockup.png"), 2400, 1500, false);
   console.log("built", s.slug);

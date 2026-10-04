@@ -13,5 +13,7 @@ export const ROYAL = {
   lilac: "#CDB8FF",     // flame centers and lightning
   shadow: "#24124A",    // deep purple drop shadow
   gold: CANDY.gold,     // matte-gold outline
+  grey: "#74787E",      // clean matte grey letter fill
+  black: "#111111",     // hard black outline
 };
 Object.assign(INK, { red: ROYAL.flame, redDark: ROYAL.flameDeep, yellow: ROYAL.lilac, teal: ROYAL.base, tealDark: ROYAL.baseDeep });
