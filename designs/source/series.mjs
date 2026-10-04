@@ -53,27 +53,30 @@ function artSheet(W, H, k = 1) {
 
 // The browser lays out each line (measured glyph bounds), then builds the inked layers.
 const LAYOUT = `
+// Lays out lines at ONE shared letter size. align "left": every line starts at the same left edge
+// (block centered on the canvas); align "center": each line centered. Returns the block's bottom y.
 function inked(svg, lines, o){
   const ctx=document.createElement("canvas").getContext("2d"), NS="http://www.w3.org/2000/svg";
-  let tw=o.width, rows;
-  const measure=()=>lines.map(t=>{ctx.font='1000px Rye';const m=ctx.measureText(t);const w=m.actualBoundingBoxLeft+m.actualBoundingBoxRight;
-    let s=1000*tw/w; s=Math.min(s,o.maxSize); return {t,s,asc:m.actualBoundingBoxAscent*s/1000,desc:m.actualBoundingBoxDescent*s/1000,lx:m.actualBoundingBoxLeft*s/1000,w:w*s/1000}});
-  const total=r=>r.reduce((a,x)=>a+x.asc+x.desc,0)+o.gap*(r.length-1);
-  rows=measure(); while(total(rows)>o.maxHeight){tw*=0.96;rows=measure()}
-  let y=o.top+(o.center?(o.maxHeight-total(rows))/2:0);
-  rows.forEach(r=>{y+=r.asc;r.y=y;y+=r.desc+o.gap});
-  const mk=(r)=>{const t=document.createElementNS(NS,"text");t.textContent=r.t;t.setAttribute("x",(o.cx-r.w/2+r.lx).toFixed(1));t.setAttribute("y",r.y.toFixed(1));t.setAttribute("font-family","Rye");t.setAttribute("font-size",r.s.toFixed(1));return t};
+  ctx.font='1000px Rye';
+  const capH=ctx.measureText("H").actualBoundingBoxAscent;
+  const m=lines.map(t=>{const x=ctx.measureText(t);return {t,lx:x.actualBoundingBoxLeft,w:x.actualBoundingBoxLeft+x.actualBoundingBoxRight}});
+  const maxW=Math.max(...m.map(r=>r.w)), n=lines.length, gapK=o.gapK??0.24;
+  // Biggest size that fits both the width and the height budget.
+  const sW=1000*o.width/maxW, sH=1000*o.height/(capH*(n+gapK*(n-1)));
+  const s=Math.min(sW,sH,o.maxSize||1e9), cap=capH*s/1000, gap=cap*gapK, blockW=maxW*s/1000;
+  const blockH=n*cap+(n-1)*gap, top=o.cy-(blockH+(o.extraBelow||0))/2, left=o.cx-blockW/2;
+  const rows=m.map((r,i)=>({t:r.t,s,y:top+cap+i*(cap+gap),x:o.align==="left"?left+r.lx*s/1000:o.cx-r.w*s/2000+r.lx*s/1000}));
+  const mk=(r)=>{const t=document.createElementNS(NS,"text");t.textContent=r.t;t.setAttribute("x",r.x.toFixed(1));t.setAttribute("y",r.y.toFixed(1));t.setAttribute("font-family","Rye");t.setAttribute("font-size",r.s.toFixed(1));return t};
   const layer=(attrs,dx,dy,strokeK)=>{const g=document.createElementNS(NS,"g");for(const k in attrs)g.setAttribute(k,attrs[k]);if(dx||dy)g.setAttribute("transform","translate("+dx+" "+dy+")");
     rows.forEach(r=>{const t=mk(r);if(strokeK)t.setAttribute("stroke-width",(r.s*strokeK).toFixed(1));g.appendChild(t)});return g};
   const clip=document.createElementNS(NS,"clipPath");clip.id=o.id;rows.forEach(r=>clip.appendChild(mk(r)));svg.querySelector("defs").appendChild(clip);
-  const sh=rows[0].s*0.058;
-  const art=svg.querySelector("#art");
+  const sh=s*0.058, art=svg.querySelector("#art");
   svg.insertBefore(layer({fill:o.shadow},sh,sh),art);
   svg.insertBefore(layer({fill:"none",stroke:"#121212","stroke-linejoin":"round"},sh,sh,0.026),art);
   art.setAttribute("clip-path","url(#"+o.id+")");
   svg.appendChild(layer({fill:"none",stroke:"#121212","stroke-linejoin":"round"},0,0,0.026));
   svg.appendChild(layer({fill:"none",stroke:"#FFFFFF","stroke-linejoin":"round",opacity:".6"},-sh*0.18,-sh*0.18,0.011));
-  return y-o.gap;
+  return {bottom:top+blockH, left, size:s};
 }`;
 
 const page = (W, H, art, script) => `<!doctype html><html><head><meta charset="utf-8"><style>
@@ -95,7 +98,7 @@ html,body{margin:0;background:#ECEAE4}</style></head><body>
   <g transform="translate(1200 0)"><path d="${TEE}" fill="${shirt}" stroke="#000" stroke-width="4"/><path d="M 470 112 Q 600 136 730 112" fill="none" stroke="#000" stroke-width="6"/>
      <image href="${backPng}" x="390" y="250" width="420" height="560"/></g>
   <text x="600" y="1450" text-anchor="middle" font-family="Rye" font-size="44" fill="#5A4E60">FRONT</text>
-  <text x="1800" y="1450" text-anchor="middle" font-family="Rye" font-size="44" fill="#5A4E60">BACK · ${label}</text>
+  <text x="1800" y="1450" text-anchor="middle" font-family="Rye" font-size="44" fill="#5A4E60">BACK</text>
 </svg><script>document.fonts.ready.then(()=>document.body.dataset.ready=1)</script></body></html>`;
 
 const browser = await chromium.launch();
@@ -115,7 +118,7 @@ async function render(html, file, w, h, transparent = true) {
 // Front left chest: "GM" at 1200 × 1200 (4 × 4 in).
 const gmFile = join(out, "gm-left-chest.png");
 await render(page(1200, 1200, artSheet(1200, 1200, 1.15),
-  `inked(document.getElementById("s"),["GM"],{id:"c",cx:600,top:0,width:1080,maxSize:1300,maxHeight:1120,gap:0,center:true,shadow:"${CANDY.lavender}"})`),
+  `inked(document.getElementById("s"),["GM"],{id:"c",cx:600,cy:600,width:1060,height:1000,align:"center",shadow:"${CANDY.lavender}"})`),
   gmFile, 1200, 1200);
 
 // Back prints: stacked saying + the gold tagline, 3600 × 4800 (12 × 16 in).
@@ -123,10 +126,12 @@ for (const s of SAYINGS) {
   const dir = join(out, s.slug), back = join(dir, "back-print.png");
   await render(page(3600, 4800, artSheet(3600, 4800, 1.9), `
     const svg=document.getElementById("s");
-    const bottom=inked(svg,${JSON.stringify(s.lines)},{id:"c",cx:1800,top:120,width:3300,maxSize:1150,maxHeight:3900,gap:110,center:false,shadow:"${CANDY.lavender}"});
+    // Words fill ~3/4 of the 12 × 16 in print area, one letter size, left-aligned, centered top to bottom.
+    const TAG=170, TAGGAP=260;
+    const r=inked(svg,${JSON.stringify(s.lines)},{id:"c",cx:1800,cy:2400,width:3240,height:3600-TAG-TAGGAP,extraBelow:TAG+TAGGAP,align:"left",shadow:"${CANDY.lavender}"});
     const t=document.createElementNS("http://www.w3.org/2000/svg","text");
-    t.setAttribute("x","1800");t.setAttribute("y",(bottom+330).toFixed(0));t.setAttribute("text-anchor","middle");
-    t.setAttribute("font-family","Pinyon Script");t.setAttribute("font-size","170");t.setAttribute("fill","${CANDY.gold}");
+    t.setAttribute("x",r.left.toFixed(0));t.setAttribute("y",(r.bottom+TAGGAP+TAG*0.55).toFixed(0));
+    t.setAttribute("font-family","Pinyon Script");t.setAttribute("font-size",TAG);t.setAttribute("fill","${CANDY.gold}");
     t.textContent="We hope to always Giggleyou Viciously";svg.appendChild(t);`),
     back, 3600, 4800);
   await render(mockHTML("#1C1C1E", pathToFileURL(gmFile).href, pathToFileURL(back).href, s.lines.join(" / ")), join(dir, "mockup.png"), 2400, 1500, false);
