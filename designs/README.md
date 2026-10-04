@@ -1,5 +1,7 @@
 # GiggleMe designs
 
+![GiggleMe logo](previews/logo-final.png)
+
 *We hope to always Giggleyou Viciously.*
 
 ![All five shirts](previews/all-shirts.png)
@@ -8,26 +10,39 @@
 
 | Folder | What it is |
 |---|---|
-| `brand/` | Logo files (transparent PNG). `-on-dark` versions go on black or dark backgrounds, `-on-light` on white or light backgrounds. |
+| `brand/giggleme-logo.png` | The official logo: tattoo-inked letters plus the gold script tagline (transparent PNG). Use it for the store header, banners and big prints. |
+| `brand/giggleme-wordmark.png` | The letters only. Use it for small spots like shirt tags, profile pictures and packing slips. |
 | `shirts/<design>/print-dark-shirts.png` | Print file for **black, navy and charcoal** shirts. Upload this to Printful. |
 | `shirts/<design>/print-light-shirts.png` | Print file for **white, cream and light heather** shirts. |
 | `shirts/<design>/mockup-*.png` | Quick previews. Use Printful's mockups for the store photos. |
 | `shirts/<design>/design-*.svg` | Editable vector versions of each design. |
-| `source/` | The code that draws everything. Change `designs.mjs`, then run `npm install` and `npm run build`. |
+| `source/` | The code that draws everything. Shirts: change `designs.mjs`, then `npm install` and `npm run build`. Logo: `node logo-final.mjs`. |
 
 Every print file is **3600 × 4800 px at 300 DPI** (12 × 16 in, the standard Printful tee front area), with a transparent background. All fonts are open-license (SIL OFL), so they're safe to use on products you sell.
+
+## The logo
+
+**GIGGLEME** in bold old-western letters, outlined in black like a tattoo, with tattoo art inked inside every letter: roses, flames, waves, nautical stars and lightning bolts, all in cotton-candy colors with a lavender drop shadow. Underneath, *We hope to always Giggleyou Viciously* in old-style cursive, matte gold.
+
+- Keep the logo as is: don't recolor, stretch or add effects.
+- The gold script is thin, so use the letters-only wordmark anywhere smaller than about 2 inches wide.
 
 ## Brand colors
 
 | Name | Hex | Use |
 |---|---|---|
-| Ink | `#151515` | Text on light shirts, the grin |
+| Cotton Candy Pink | `#FF9EC7` | Roses, flames, punchlines |
+| Baby Blue | `#9FD3F7` | Main fill inside the letters, accents |
+| Lavender | `#C9B1F5` | Logo shadow, stars |
+| Mint | `#9EE6CF` | Leaves, small accents |
+| Lemon | `#FFF1A0` | Lightning, flame centers, highlights |
+| Matte Gold | `#B8955A` | Tagline; accents on white shirts |
+| Tattoo Black | `#121212` | Outlines, text on light shirts |
 | Bone | `#F7F1E3` | Text on dark shirts |
-| Giggle Yellow | `#FFD23F` | The face, stars, highlights |
-| Vicious Pink | `#FF4F8B` | "Me" in the logo, punchlines |
-| Teal | `#22C3B5` | Small accents |
 
-Fonts: **Titan One** (logo), **Anton** and **Archivo Black** (headlines), **DM Serif Display** and **Shrikhand** (sayings), **Space Mono** (small details).
+On white shirts, use the deeper versions so they stay readable: pink `#E8559A`, blue `#3E8FD0`, lavender `#8F6BD8`.
+
+Fonts: **Rye** (logo letters), **Pinyon Script** (tagline), **Anton** and **Archivo Black** (shirt headlines), **DM Serif Display** and **Shrikhand** (sayings), **Space Mono** (small details).
 
 ## Put a design in your store
 
@@ -73,4 +88,4 @@ Add these bullets under each description:
 
 - Order one sample of your favorite to check colors and size in person.
 - Search each phrase at tmsearch.uspto.gov (clothing, Class 25). These were written fresh for GiggleMe, but short phrases can already be someone's trademark.
-- Each design has a small GiggleMe tag under it. To remove it, delete the `${tag(...)}` line for that design in `source/designs.mjs` and rebuild.
+- Each design has a small GiggleMe wordmark tag under it. To remove it, delete the `${tag(...)}` line for that design in `source/designs.mjs` and rebuild.

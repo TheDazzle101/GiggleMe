@@ -2,46 +2,24 @@
 // (15 × 18 in at 300 DPI, Printful's full front print area).
 // Any <text> with data-w="N" is auto-sized in the browser to exactly N px wide.
 
-export const BRAND = {
-  ink: "#151515",
-  bone: "#F7F1E3",
-  yellow: "#FFD23F",
-  pink: "#FF4F8B",
-  teal: "#22C3B5",
-  red: "#FF5A36",
-};
+import { CANDY, wordmarkAt } from "./brandmark.mjs";
+
+export const BRAND = { ink: "#151515", bone: "#F7F1E3", ...CANDY };
 
 // Two palettes per design: "dark" prints on black/navy shirts, "light" on white/sand shirts.
+// Cotton-candy accents; light shirts get deeper versions so they stay readable on white.
 export function palette(variant) {
   const B = BRAND;
   return variant === "dark"
-    ? { fg: B.bone, sub: "#CFC7B8", ink: B.ink, card: "none", hot: B.yellow, yellow: B.yellow, pink: B.pink, teal: B.teal, red: B.red }
-    : { fg: B.ink, sub: "#3B3B3B", ink: B.ink, card: "none", hot: "#E8336F", yellow: "#F2B705", pink: "#E8336F", teal: "#119E93", red: "#E8431F" };
+    ? { fg: B.bone, sub: "#CFC7B8", ink: B.ink, hot: B.pink, yellow: B.lemon, pink: B.pink, teal: B.blue, red: "#FF6FAE", lav: B.lavender }
+    : { fg: B.ink, sub: "#3B3B3B", ink: B.ink, hot: "#E8559A", yellow: B.gold, pink: "#E8559A", teal: "#3E8FD0", red: "#E8559A", lav: "#8F6BD8" };
 }
 
 const W = 4500, H = 5400, CX = W / 2;
 
-// Fanged grin: the GiggleMe face. Happy closed eyes, wide grin, one sharp fang.
-export function grin({ x, y, r, face, line, fang }) {
-  const sw = r * 0.11;
-  return `
-  <g transform="translate(${x} ${y})">
-    <circle r="${r}" fill="${face}"/>
-    <path d="M ${-r * 0.5} ${-r * 0.12} q ${r * 0.16} ${-r * 0.24} ${r * 0.32} 0" fill="none" stroke="${line}" stroke-width="${sw}" stroke-linecap="round"/>
-    <path d="M ${r * 0.18} ${-r * 0.12} q ${r * 0.16} ${-r * 0.24} ${r * 0.32} 0" fill="none" stroke="${line}" stroke-width="${sw}" stroke-linecap="round"/>
-    <path d="M ${-r * 0.62} ${r * 0.14} Q 0 ${r * 0.95} ${r * 0.62} ${r * 0.14} Z" fill="${line}"/>
-    <path d="M ${r * 0.16} ${r * 0.24} L ${r * 0.3} ${r * 0.24} L ${r * 0.23} ${r * 0.52} Z" fill="${fang}"/>
-  </g>`;
-}
-
-// Small brand tag that sits under every shirt design.
-function tag(p, y) {
-  return `
-  <g opacity="0.9">
-    ${grin({ x: CX - 330, y, r: 95, face: p.yellow, line: BRAND.ink, fang: BRAND.bone })}
-    <text x="${CX - 200}" y="${y + 52}" font-family="Titan One" font-size="150" fill="${p.fg}">Giggle<tspan fill="${p.pink}">Me</tspan></text>
-  </g>`;
-}
+// The GiggleMe wordmark as a small tag under every shirt design.
+let tagCount = 0;
+const tag = (p, y) => wordmarkAt(CX, y, 1150, `tag${tagCount++}`);
 
 const star = (x, y, r, fill) => {
   const pts = [];
@@ -155,28 +133,6 @@ export const SHIRTS = [
       <text x="${CX}" y="4880" data-w="3300" text-anchor="middle" font-family="Anton" font-size="700" fill="${p.pink}">RENAME IT.</text>
       ${tag(p, 5170)}`;
     },
-  },
-];
-
-// Logo lockups.
-export const LOGOS = [
-  {
-    slug: "logo-primary",
-    w: 4000, h: 1600,
-    svg: (p) => `
-      ${grin({ x: 700, y: 700, r: 560, face: p.yellow, line: BRAND.ink, fang: BRAND.bone })}
-      <text x="1400" y="960" data-w="2500" font-family="Titan One" font-size="700" fill="${p.fg}">Giggle<tspan fill="${p.pink}">Me</tspan></text>
-      <text x="1420" y="1430" data-w="2460" font-family="Space Mono" font-weight="700" font-size="140" fill="${p.sub}">We hope to always Giggleyou Viciously.</text>`,
-  },
-  {
-    slug: "logo-wordmark",
-    w: 3200, h: 1000,
-    svg: (p) => `<text x="1600" y="760" data-w="3000" text-anchor="middle" font-family="Titan One" font-size="700" fill="${p.fg}">Giggle<tspan fill="${p.pink}">Me</tspan></text>`,
-  },
-  {
-    slug: "logo-icon",
-    w: 1200, h: 1200,
-    svg: (p) => grin({ x: 600, y: 600, r: 560, face: p.yellow, line: BRAND.ink, fang: BRAND.bone }),
   },
 ];
 

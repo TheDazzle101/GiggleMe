@@ -5,7 +5,7 @@ import { execFileSync } from "node:child_process";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { SHIRTS, LOGOS, SIZE, BRAND, palette } from "./designs.mjs";
+import { SHIRTS, SIZE, BRAND, palette } from "./designs.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const out = resolve(here, "..");
@@ -19,7 +19,7 @@ const FONTS = `
 @font-face{font-family:"Shrikhand";src:url(${font("shrikhand", "shrikhand-latin-400-normal.woff2")})}
 @font-face{font-family:"Space Mono";font-weight:400;src:url(${font("space-mono", "space-mono-latin-400-normal.woff2")})}
 @font-face{font-family:"Space Mono";font-weight:700;src:url(${font("space-mono", "space-mono-latin-700-normal.woff2")})}
-@font-face{font-family:"Titan One";src:url(${font("titan-one", "titan-one-latin-400-normal.woff2")})}`;
+@font-face{font-family:"Rye";src:url(${font("rye", "rye-latin-400-normal.woff2")})}`;
 
 // Auto-size every text[data-w] to exactly that width.
 const FIT = `
@@ -72,11 +72,5 @@ for (const s of SHIRTS) {
     await render(mockup(print, v === "dark" ? "#1C1C1E" : "#F6F5F1", v === "dark" ? "#000" : "#CFCBC2"), join(dir, `mockup-${v}.png`), 1200, 1400, false);
   }
 }
-for (const l of LOGOS) {
-  for (const v of ["dark", "light"]) {
-    const p = palette(v);
-    await render(page(l.svg(p), l.w, l.h, l.w, l.h), join(out, "brand", `${l.slug}-on-${v}.png`), l.w, l.h);
-  }
-}
 await browser.close();
-console.log("Built", SHIRTS.length, "shirts and", LOGOS.length, "logos. Brand colors:", BRAND);
+console.log("Built", SHIRTS.length, "shirts. Brand colors:", BRAND);

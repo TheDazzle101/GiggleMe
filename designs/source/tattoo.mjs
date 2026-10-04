@@ -1,12 +1,5 @@
-// Traditional tattoo-flash GiggleMe concepts → ../previews/logo-tattoo.png
-import { chromium } from "playwright";
-import { execFileSync } from "node:child_process";
-import { writeFileSync } from "node:fs";
-import { dirname, join, resolve } from "node:path";
-import { fileURLToPath, pathToFileURL } from "node:url";
-
-const here = dirname(fileURLToPath(import.meta.url));
-const font = (pkg, file) => pathToFileURL(join(here, "node_modules/@fontsource", pkg, "files", file)).href;
+// Traditional tattoo-flash drawing pieces (roses, stars, flames, bolts…) used inside the GiggleMe wordmark.
+// Colors come from INK; brandmark.mjs switches them to the cotton-candy set.
 
 export const INK = {
   black: "#121212", red: "#C8102E", redDark: "#7E0A1C", green: "#1F7A4D", greenDark: "#11492D",
@@ -123,82 +116,4 @@ export function skull(x, y, s) {
     <path d="M ${-s * 0.75} ${-s * 0.62} Q ${-s * 0.5} ${-s * 0.9} ${-s * 0.15} ${-s * 0.88}" fill="none" stroke="#fff" stroke-width="${s * 0.05}" stroke-linecap="round" opacity=".9"/>
     <path d="M ${s * 0.55} ${-s * 0.6} L ${s * 0.4} ${-s * 0.45} M ${s * 0.68} ${-s * 0.4} L ${s * 0.55} ${-s * 0.3}" stroke="${K.black}" stroke-width="${s * 0.03}" stroke-linecap="round"/>
   </g>`;
-}
-
-// ---- Concepts -----------------------------------------------------------------------
-
-const W = 2600, H = 1500;
-const paper = `<rect width="${W}" height="${H}" fill="${K.cream}"/><rect width="${W}" height="${H}" fill="url(#grain)" opacity=".35"/>`;
-
-const CONCEPTS = [
-  {
-    name: "1 · Heart & Dagger",
-    note: "Classic tattoo flash: dagger through a heart, roses, and GiggleMe on a scroll.",
-    svg: `${paper}
-      ${nauticalStar(230, 230, 110, K.teal, 12)}${nauticalStar(2370, 230, 110, K.teal, -12)}
-      ${dagger(1300, 610, 1000, 200)}
-      ${heart(1300, 600, 350)}
-      ${banner(1300, 880, 1440, 270, 60, K.cream, "GiggleMe", "Yesteryear", 250, K.black)}
-      ${rose(520, 900, 165, [200, 250])}${rose(2080, 900, 165, [-20, -70])}
-      ${banner(1300, 1230, 1500, 150, 30, K.black, "WE HOPE TO ALWAYS GIGGLEYOU VICIOUSLY", "Rye", 58, K.cream)}`,
-  },
-  {
-    name: "2 · Inked Letters",
-    note: "The letters themselves are tattooed: roses, flames, stars and lightning inked inside.",
-    svg: (() => {
-      const art = `
-        <rect x="0" y="0" width="${W}" height="${H}" fill="${K.teal}"/>
-        ${Array.from({ length: 9 }, (_, i) => `<path d="M ${i * 320 - 60} 420 q 80 -60 160 0 t 160 0" fill="none" stroke="${K.tealDark}" stroke-width="16"/>`).join("")}
-        ${flames(0, W, 1000, 360)}
-        ${[260, 700, 1180, 1660, 2120].map((x, i) => rose(x, 600 + (i % 2) * 70, 120, [140, 30])).join("")}
-        ${[480, 940, 1420, 1900, 2380].map((x, i) => nauticalStar(x, 400 + (i % 2) * 260, 70, K.red, i * 9)).join("")}
-        ${[120, 1050, 2000].map((x) => bolt(x, 700, 90, 15)).join("")}`;
-      const T = `<text x="1300" y="900" text-anchor="middle" font-family="Rye" font-size="380" letter-spacing="0">GIGGLEME</text>`;
-      return `<rect width="${W}" height="${H}" fill="${K.black}"/><rect width="${W}" height="${H}" fill="url(#grain)" opacity=".15"/>
-        <defs><clipPath id="word">${T}</clipPath></defs>
-        <g transform="translate(22 22)" fill="${K.red}">${T}</g>
-        <g clip-path="url(#word)">${art}</g>
-        <g fill="none" stroke="${K.black}" stroke-width="10" stroke-linejoin="round">${T}</g>
-        <g fill="none" stroke="${K.cream}" stroke-width="5" stroke-linejoin="round" transform="translate(-4 -4)" opacity=".7">${T}</g>
-        ${banner(1300, 1170, 1600, 150, 30, K.cream, "WE HOPE TO ALWAYS GIGGLEYOU VICIOUSLY", "Rye", 58, K.black)}`;
-    })(),
-  },
-  {
-    name: "3 · Laughing Skull",
-    note: "A grinning skull with one fang (the vicious giggle), roses and a script scroll.",
-    svg: `<rect width="${W}" height="${H}" fill="#151515"/><rect width="${W}" height="${H}" fill="url(#grain)" opacity=".2"/>
-      <g opacity=".95">${flames(800, 1800, 760, 520)}</g>
-      ${rose(930, 820, 160, [190, 230])}${rose(1670, 820, 160, [-10, -50])}
-      ${skull(1300, 470, 330)}
-      ${banner(1300, 1000, 1500, 280, 60, K.cream, "GiggleMe", "Yesteryear", 260, K.red)}
-      <text x="1300" y="1330" text-anchor="middle" font-family="Rye" font-size="58" letter-spacing="4" fill="${K.cream}">WE HOPE TO ALWAYS GIGGLEYOU VICIOUSLY</text>
-      ${nauticalStar(300, 300, 100, K.red, 10)}${nauticalStar(2300, 300, 100, K.red, -10)}`,
-  },
-];
-
-const html = `<!doctype html><html><head><meta charset="utf-8"><style>
-@font-face{font-family:"Yesteryear";src:url(${font("yesteryear", "yesteryear-latin-400-normal.woff2")})}
-@font-face{font-family:"Rye";src:url(${font("rye", "rye-latin-400-normal.woff2")})}
-@font-face{font-family:"Space Mono";font-weight:700;src:url(${font("space-mono", "space-mono-latin-700-normal.woff2")})}
-html,body{margin:0;background:#E9E6DF} .c{margin:0 0 24px} .lab{font:700 34px "Space Mono";color:#222;padding:10px 6px}
-.n{font-weight:400;color:#555;font-size:26px}</style></head><body style="padding:24px">
-<svg width="0" height="0" style="position:absolute"><defs>
-<filter id="grainF"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0.2  0 0 0 0 0.15  0 0 0 0 0.1  0 0 0 .5 0"/></filter>
-<pattern id="grain" width="400" height="400" patternUnits="userSpaceOnUse"><rect width="400" height="400" filter="url(#grainF)"/></pattern></defs></svg>
-${CONCEPTS.map((c) => `<div class="c"><div class="lab">${c.name} <span class="n">${c.note}</span></div>
-<svg xmlns="http://www.w3.org/2000/svg" width="${W / 2}" height="${H / 2}" viewBox="0 0 ${W} ${H}" style="display:block;border-radius:18px">${c.svg}</svg></div>`).join("")}
-<script>document.fonts.ready.then(()=>document.body.dataset.ready=1)</script></body></html>`;
-
-if (import.meta.url === pathToFileURL(process.argv[1]).href) {
-  const tmp = join(here, "tattoo.tmp.html");
-  writeFileSync(tmp, html);
-  const browser = await chromium.launch();
-  const p = await browser.newPage({ viewport: { width: W / 2 + 48, height: 800 }, deviceScaleFactor: 2 });
-  await p.goto(pathToFileURL(tmp).href);
-  await p.waitForSelector("body[data-ready]");
-  const out = resolve(here, "../previews/logo-tattoo.png");
-  await p.screenshot({ path: out, fullPage: true });
-  await browser.close();
-  execFileSync("rm", [tmp]);
-  console.log("Wrote", out);
 }
