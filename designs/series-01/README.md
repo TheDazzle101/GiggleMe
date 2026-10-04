@@ -4,13 +4,13 @@
 
 ![Front and back](../previews/series-01-front-back.jpg)
 
-Ten tees: a matte-gold script **GM** on the front left chest, and a stacked saying across the back at Printful's biggest back size. The back letters are filled with GiggleMe tattoo art in a darker gunmetal palette (gunmetal grey, dusty rose, smoky lavender, sage, muted brass) and boldly outlined in the same matte gold as the GM. Every letter on a back is the same size, every line starts at the same left edge, and the block is centered top to bottom.
+Ten tees: the **GiggleMe logo** on the front left chest, and a stacked saying across the back at Printful's biggest back size. The back letters are filled with GiggleMe tattoo art in a darker gunmetal palette (gunmetal grey, dusty rose, smoky lavender, sage, muted brass) and boldly outlined in matte gold. Every letter on a back is the same size, every line starts at the same left edge, and the block is centered top to bottom.
 
 ## Files
 
 | File | Where it prints | Size |
 |---|---|---|
-| `gm-left-chest.png` | **Front, left chest** (same file on every shirt): GM in matte-gold script | 1200 × 1200 px · 4 × 4 in · 300 DPI |
+| `logo-left-chest.png` | **Front, left chest** (same file on every shirt): the GiggleMe wordmark | 1200 × 213 px · 4 in wide · 300 DPI |
 | `<design>/back-print.png` | **Back**, oversize | 4500 × 5400 px · 15 × 18 in · 300 DPI |
 | `<design>/mockup.png` | Preview only | |
 
@@ -19,7 +19,7 @@ This gunmetal-and-gold look is made for **black, charcoal and navy** shirts. On 
 ## Set it up in Printful
 
 1. **Add product** → pick a tee that offers the **oversize 15 × 18 in back print** (filter for it in Printful's product list). If you choose a tee without it, Printful shrinks the back to 12 × 16 in.
-2. Under **Front**, choose the **Left chest** placement and upload `gm-left-chest.png`. Keep it about 3.5–4 in wide.
+2. Under **Front**, choose the **Left chest** placement and upload `logo-left-chest.png`. Keep it about 3.5–4 in wide.
 3. Under **Back**, choose the oversize/large back placement and upload that design's `back-print.png`. Keep it centered and full size (about 15 in wide).
 4. Pick colors: start with **Black** and **Navy**.
 5. Price: two print spots plus an oversize back cost more at Printful, so price around **$34.99–36.99**.

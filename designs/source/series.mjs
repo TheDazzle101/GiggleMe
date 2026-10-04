@@ -2,7 +2,7 @@
 // Run: node series.mjs
 //   → ../series-01/<nn-slug>/back-print.png   (4500 × 5400 px, 300 DPI = 15 × 18 in oversize back print)
 //   → ../series-01/<nn-slug>/mockup.png        (front + back preview, to scale on a size-L tee)
-//   → ../series-01/gm-left-chest.png           (1200 × 1200 px, 300 DPI = 4 × 4 in, matte-gold script GM)
+//   → ../series-01/logo-left-chest.png         (1200 px wide, 300 DPI = 4 in, the GiggleMe wordmark)
 //   → ../previews/series-01.png                (all ten at a glance)
 import { chromium } from "playwright";
 import { execFileSync } from "node:child_process";
@@ -106,7 +106,7 @@ const mockHTML = (shirt, frontPng, backPng) => `<!doctype html><html><head><meta
 html,body{margin:0;background:#ECEAE4}</style></head><body>
 <svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1500" viewBox="0 0 2400 1500">
   <g><path d="${TEE}" fill="${shirt}" stroke="#000" stroke-width="4"/><path d="M 470 120 Q 600 200 730 120" fill="none" stroke="#000" stroke-width="6"/>
-     <image href="${frontPng}" x="690" y="270" width="144" height="144"/></g>
+     <image href="${frontPng}" x="680" y="300" width="144" height="40"/></g>
   <g transform="translate(1200 0)"><path d="${TEE}" fill="${shirt}" stroke="#000" stroke-width="4"/><path d="M 470 112 Q 600 136 730 112" fill="none" stroke="#000" stroke-width="6"/>
      <image href="${backPng}" x="330" y="190" width="540" height="648"/></g>
   <text x="600" y="1450" text-anchor="middle" font-family="Rye" font-size="44" fill="#5A4E60">FRONT</text>
@@ -128,20 +128,9 @@ async function render(html, file, w, h, transparent = true) {
   if (transparent) execFileSync("convert", [file, "-units", "PixelsPerInch", "-density", "300", file]);
 }
 
-// Front left chest: "GM" in matte-gold old-style script, fitted into 1200 × 1200 (4 × 4 in).
-const gmFile = join(out, "gm-left-chest.png");
-await render(page(1200, 1200, "", `
-  const ctx=document.createElement("canvas").getContext("2d");ctx.font='1000px "Pinyon Script"';
-  const m=ctx.measureText("GM"),w=m.actualBoundingBoxLeft+m.actualBoundingBoxRight,h=m.actualBoundingBoxAscent+m.actualBoundingBoxDescent;
-  const s=1000*Math.min(1060/w,1060/h);
-  const t=document.createElementNS("http://www.w3.org/2000/svg","text");
-  t.setAttribute("font-family","Pinyon Script");t.setAttribute("font-size",s.toFixed(1));t.setAttribute("fill","${CANDY.gold}");
-  // A thin gold outline thickens the script hairlines so they print cleanly at 4 in.
-  t.setAttribute("stroke","${CANDY.gold}");t.setAttribute("stroke-width","9");t.setAttribute("stroke-linejoin","round");
-  t.setAttribute("x",(600-w*s/2000+m.actualBoundingBoxLeft*s/1000).toFixed(1));
-  t.setAttribute("y",(600-h*s/2000+m.actualBoundingBoxAscent*s/1000).toFixed(1));
-  t.textContent="GM";document.getElementById("s").appendChild(t);`),
-  gmFile, 1200, 1200);
+// Front left chest: the official GiggleMe wordmark, 4 in wide (1200 px at 300 DPI).
+const gmFile = join(out, "logo-left-chest.png");
+execFileSync("convert", [resolve(here, "../brand/giggleme-wordmark.png"), "-resize", "1200x", "-units", "PixelsPerInch", "-density", "300", gmFile]);
 
 // Back prints: the stacked saying at Printful's biggest back size, 4500 × 5400 (15 × 18 in).
 // One letter size, every line starts at the same left edge, block centered top to bottom.
