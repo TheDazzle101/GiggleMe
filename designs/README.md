@@ -10,7 +10,7 @@
 
 | Folder | What it is |
 |---|---|
-| `brand/giggleme-logo.png` | The official logo: tattoo-inked letters plus the gold script tagline (transparent PNG). Use it for the store header, banners and big prints. |
+| `brand/giggleme-logo.png` | The official logo: retro-script GiggleMe plus the gold script tagline (transparent PNG). Use it for the store header, banners and big prints. |
 | `brand/giggleme-wordmark.png` | The letters only. Use it for small spots like shirt tags, profile pictures and packing slips. |
 | `shirts/<design>/print-dark-shirts.png` | Print file for **black, navy and charcoal** shirts. Upload this to Printful. |
 | `shirts/<design>/print-light-shirts.png` | Print file for **white, cream and light heather** shirts. |
@@ -22,10 +22,11 @@ Every print file is **3600 × 4800 px at 300 DPI** (12 × 16 in, the standard Pr
 
 ## The logo
 
-**GIGGLEME** in bold old-western letters, outlined in black like a tattoo, with tattoo art inked inside every letter: roses, flames, waves, nautical stars and lightning bolts, all in cotton-candy colors with a lavender drop shadow. Underneath, *We hope to always Giggleyou Viciously* in old-style cursive, matte gold.
+**GiggleMe** in an old-school retro script (Yellowtail), with the first **G** and the **M** at double height. The letters are a dark matte grey (`#4A4E55`) with a hard black outline, a matte-gold outer outline (`#B8955A`) and a black drop shadow. The full logo adds *We hope to always Giggleyou Viciously* underneath in matte-gold script.
 
 - Keep the logo as is: don't recolor, stretch or add effects.
-- The gold script is thin, so use the letters-only wordmark anywhere smaller than about 2 inches wide.
+- Use the letters-only wordmark anywhere smaller than about 3 inches wide, and on shirt chests.
+- It reads best on black, charcoal and navy. On white, the black and gold outline carries it.
 
 ## Brand colors
 
@@ -42,7 +43,7 @@ Every print file is **3600 × 4800 px at 300 DPI** (12 × 16 in, the standard Pr
 
 On white shirts, use the deeper versions so they stay readable: pink `#E8559A`, blue `#3E8FD0`, lavender `#8F6BD8`.
 
-Fonts: **Rye** (logo letters), **Pinyon Script** (tagline), **Anton** and **Archivo Black** (shirt headlines), **DM Serif Display** and **Shrikhand** (sayings), **Space Mono** (small details).
+Fonts: **Yellowtail** (logo), **Rye** (Series 01 back letters), **Pinyon Script** (tagline), **Anton** and **Archivo Black** (shirt headlines), **DM Serif Display** and **Shrikhand** (sayings), **Space Mono** (small details).
 
 ## Put a design in your store
 

@@ -18,8 +18,7 @@ export function palette(variant) {
 const W = 4500, H = 5400, CX = W / 2;
 
 // The GiggleMe wordmark as a small tag under every shirt design.
-let tagCount = 0;
-const tag = (p, y) => wordmarkAt(CX, y, 1150, `tag${tagCount++}`);
+const tag = (p, y) => wordmarkAt(CX, y, 820);
 
 const star = (x, y, r, fill) => {
   const pts = [];

@@ -101,7 +101,7 @@ const mockHTML = (shirt, frontPng, backPng) => `<!doctype html><html><head><meta
 html,body{margin:0;background:#ECEAE4}</style></head><body>
 <svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1500" viewBox="0 0 2400 1500">
   <g><path d="${TEE}" fill="${shirt}" stroke="#000" stroke-width="4"/><path d="M 470 120 Q 600 200 730 120" fill="none" stroke="#000" stroke-width="6"/>
-     <image href="${frontPng}" x="680" y="300" width="144" height="40"/></g>
+     <image href="${frontPng}" x="680" y="285" width="144" height="63"/></g>
   <g transform="translate(1200 0)"><path d="${TEE}" fill="${shirt}" stroke="#000" stroke-width="4"/><path d="M 470 112 Q 600 136 730 112" fill="none" stroke="#000" stroke-width="6"/>
      <image href="${backPng}" x="330" y="190" width="540" height="648"/></g>
   <text x="600" y="1450" text-anchor="middle" font-family="Rye" font-size="44" fill="#5A4E60">FRONT</text>

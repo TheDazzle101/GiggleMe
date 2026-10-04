@@ -19,7 +19,8 @@ const FONTS = `
 @font-face{font-family:"Shrikhand";src:url(${font("shrikhand", "shrikhand-latin-400-normal.woff2")})}
 @font-face{font-family:"Space Mono";font-weight:400;src:url(${font("space-mono", "space-mono-latin-400-normal.woff2")})}
 @font-face{font-family:"Space Mono";font-weight:700;src:url(${font("space-mono", "space-mono-latin-700-normal.woff2")})}
-@font-face{font-family:"Rye";src:url(${font("rye", "rye-latin-400-normal.woff2")})}`;
+@font-face{font-family:"Rye";src:url(${font("rye", "rye-latin-400-normal.woff2")})}
+@font-face{font-family:"Yellowtail";src:url(${font("yellowtail", "yellowtail-latin-400-normal.woff2")})}`;
 
 // Auto-size every text[data-w] to exactly that width.
 const FIT = `
