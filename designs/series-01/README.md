@@ -4,25 +4,25 @@
 
 ![Front and back](../previews/series-01-front-back.jpg)
 
-Ten tees in the GiggleMe tattoo-ink style: a small **GM** on the front left chest and a stacked saying on the back, signed with the gold tagline.
+Ten tees: a matte-gold script **GM** on the front left chest, and a stacked saying in the GiggleMe tattoo-ink style across the back at Printful's biggest back size. Every letter on a back is the same size, every line starts at the same left edge, and the block is centered top to bottom.
 
 ## Files
 
 | File | Where it prints | Size |
 |---|---|---|
-| `gm-left-chest.png` | **Front, left chest** (same file on every shirt) | 1200 × 1200 px · 4 × 4 in · 300 DPI |
-| `<design>/back-print.png` | **Back** | 3600 × 4800 px · 12 × 16 in · 300 DPI |
+| `gm-left-chest.png` | **Front, left chest** (same file on every shirt): GM in matte-gold script | 1200 × 1200 px · 4 × 4 in · 300 DPI |
+| `<design>/back-print.png` | **Back**, oversize | 4500 × 5400 px · 15 × 18 in · 300 DPI |
 | `<design>/mockup.png` | Preview only | |
 
-The letters carry their own black outline and colors, so the same files work on **black, navy, charcoal, white and cream** shirts.
+The back letters carry their own black outline and colors, so they work on any shirt color. The gold GM shows best on **black, navy and charcoal**; on white or cream it reads softer.
 
 ## Set it up in Printful
 
-1. **Add product** → Bella+Canvas 3001 (or Comfort Colors 1717 for a heavier, vintage feel).
+1. **Add product** → pick a tee that offers the **oversize 15 × 18 in back print** (filter for it in Printful's product list). If you choose a tee without it, Printful shrinks the back to 12 × 16 in.
 2. Under **Front**, choose the **Left chest** placement and upload `gm-left-chest.png`. Keep it about 3.5–4 in wide.
-3. Under **Back**, upload that design's `back-print.png`. Keep it at the top of the print area, centered, about 12 in wide.
+3. Under **Back**, choose the oversize/large back placement and upload that design's `back-print.png`. Keep it centered and full size (about 15 in wide).
 4. Pick colors: start with **Black** and **Navy**.
-5. Price: two print spots cost more at Printful, so price around **$32.99–34.99**.
+5. Price: two print spots plus an oversize back cost more at Printful, so price around **$34.99–36.99**.
 6. Paste the listing text below and submit. Save the first one as a product template.
 
 ## Listing text

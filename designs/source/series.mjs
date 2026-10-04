@@ -1,8 +1,8 @@
 // Series 01: ten stacked sayings in the GiggleMe tattoo-ink style + the "GM" left-chest mark.
 // Run: node series.mjs
-//   → ../series-01/<nn-slug>/back-print.png   (3600 × 4800 px, 300 DPI, back print)
-//   → ../series-01/<nn-slug>/mockup.png        (front + back preview)
-//   → ../series-01/gm-left-chest.png           (1200 × 1200 px, 300 DPI, front left chest)
+//   → ../series-01/<nn-slug>/back-print.png   (4500 × 5400 px, 300 DPI = 15 × 18 in oversize back print)
+//   → ../series-01/<nn-slug>/mockup.png        (front + back preview, to scale on a size-L tee)
+//   → ../series-01/gm-left-chest.png           (1200 × 1200 px, 300 DPI = 4 × 4 in, matte-gold script GM)
 //   → ../previews/series-01.png                (all ten at a glance)
 import { chromium } from "playwright";
 import { execFileSync } from "node:child_process";
@@ -87,16 +87,17 @@ html,body{margin:0;background:transparent} svg{display:block}</style></head><bod
 <script>${LAYOUT}
 document.fonts.load('100px Rye').then(()=>document.fonts.load('100px "Pinyon Script"')).then(()=>{${script};document.body.dataset.ready=1})</script></body></html>`;
 
-// Tee silhouettes for previews: front shows the GM on the wearer's left chest, back shows the saying.
+// Tee silhouettes for previews, to scale on a size-L tee (~20 in chest ≈ 720 px → 36 px per inch).
+// Front: GM on the wearer's left chest (viewer's right). Back: the 15 × 18 in print below the collar.
 const TEE = "M 330 90 Q 600 190 870 90 L 1150 230 L 1080 520 L 960 480 L 960 1340 Q 600 1380 240 1340 L 240 480 L 120 520 L 50 230 Z";
-const mockHTML = (shirt, frontPng, backPng, label) => `<!doctype html><html><head><meta charset="utf-8"><style>
+const mockHTML = (shirt, frontPng, backPng) => `<!doctype html><html><head><meta charset="utf-8"><style>
 @font-face{font-family:"Rye";src:url(${font("rye", "rye-latin-400-normal.woff2")})}
 html,body{margin:0;background:#ECEAE4}</style></head><body>
 <svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1500" viewBox="0 0 2400 1500">
   <g><path d="${TEE}" fill="${shirt}" stroke="#000" stroke-width="4"/><path d="M 470 120 Q 600 200 730 120" fill="none" stroke="#000" stroke-width="6"/>
-     <image href="${frontPng}" x="${600 + 75}" y="300" width="125" height="125"/></g>
+     <image href="${frontPng}" x="690" y="270" width="144" height="144"/></g>
   <g transform="translate(1200 0)"><path d="${TEE}" fill="${shirt}" stroke="#000" stroke-width="4"/><path d="M 470 112 Q 600 136 730 112" fill="none" stroke="#000" stroke-width="6"/>
-     <image href="${backPng}" x="390" y="250" width="420" height="560"/></g>
+     <image href="${backPng}" x="330" y="190" width="540" height="648"/></g>
   <text x="600" y="1450" text-anchor="middle" font-family="Rye" font-size="44" fill="#5A4E60">FRONT</text>
   <text x="1800" y="1450" text-anchor="middle" font-family="Rye" font-size="44" fill="#5A4E60">BACK</text>
 </svg><script>document.fonts.ready.then(()=>document.body.dataset.ready=1)</script></body></html>`;
@@ -116,26 +117,29 @@ async function render(html, file, w, h, transparent = true) {
   if (transparent) execFileSync("convert", [file, "-units", "PixelsPerInch", "-density", "300", file]);
 }
 
-// Front left chest: "GM" at 1200 × 1200 (4 × 4 in).
+// Front left chest: "GM" in matte-gold old-style script, fitted into 1200 × 1200 (4 × 4 in).
 const gmFile = join(out, "gm-left-chest.png");
-await render(page(1200, 1200, artSheet(1200, 1200, 1.15),
-  `inked(document.getElementById("s"),["GM"],{id:"c",cx:600,cy:600,width:1060,height:1000,align:"center",shadow:"${CANDY.lavender}"})`),
+await render(page(1200, 1200, "", `
+  const ctx=document.createElement("canvas").getContext("2d");ctx.font='1000px "Pinyon Script"';
+  const m=ctx.measureText("GM"),w=m.actualBoundingBoxLeft+m.actualBoundingBoxRight,h=m.actualBoundingBoxAscent+m.actualBoundingBoxDescent;
+  const s=1000*Math.min(1060/w,1060/h);
+  const t=document.createElementNS("http://www.w3.org/2000/svg","text");
+  t.setAttribute("font-family","Pinyon Script");t.setAttribute("font-size",s.toFixed(1));t.setAttribute("fill","${CANDY.gold}");
+  // A thin gold outline thickens the script hairlines so they print cleanly at 4 in.
+  t.setAttribute("stroke","${CANDY.gold}");t.setAttribute("stroke-width","9");t.setAttribute("stroke-linejoin","round");
+  t.setAttribute("x",(600-w*s/2000+m.actualBoundingBoxLeft*s/1000).toFixed(1));
+  t.setAttribute("y",(600-h*s/2000+m.actualBoundingBoxAscent*s/1000).toFixed(1));
+  t.textContent="GM";document.getElementById("s").appendChild(t);`),
   gmFile, 1200, 1200);
 
-// Back prints: stacked saying + the gold tagline, 3600 × 4800 (12 × 16 in).
+// Back prints: the stacked saying at Printful's biggest back size, 4500 × 5400 (15 × 18 in).
+// One letter size, every line starts at the same left edge, block centered top to bottom.
 for (const s of SAYINGS) {
   const dir = join(out, s.slug), back = join(dir, "back-print.png");
-  await render(page(3600, 4800, artSheet(3600, 4800, 1.9), `
-    const svg=document.getElementById("s");
-    // Words fill ~3/4 of the 12 × 16 in print area, one letter size, left-aligned, centered top to bottom.
-    const TAG=170, TAGGAP=260;
-    const r=inked(svg,${JSON.stringify(s.lines)},{id:"c",cx:1800,cy:2400,width:3240,height:3600-TAG-TAGGAP,extraBelow:TAG+TAGGAP,align:"left",shadow:"${CANDY.lavender}"});
-    const t=document.createElementNS("http://www.w3.org/2000/svg","text");
-    t.setAttribute("x",r.left.toFixed(0));t.setAttribute("y",(r.bottom+TAGGAP+TAG*0.55).toFixed(0));
-    t.setAttribute("font-family","Pinyon Script");t.setAttribute("font-size",TAG);t.setAttribute("fill","${CANDY.gold}");
-    t.textContent="We hope to always Giggleyou Viciously";svg.appendChild(t);`),
-    back, 3600, 4800);
-  await render(mockHTML("#1C1C1E", pathToFileURL(gmFile).href, pathToFileURL(back).href, s.lines.join(" / ")), join(dir, "mockup.png"), 2400, 1500, false);
+  await render(page(4500, 5400, artSheet(4500, 5400, 2.3), `
+    inked(document.getElementById("s"),${JSON.stringify(s.lines)},{id:"c",cx:2250,cy:2700,width:4380,height:5000,align:"left",shadow:"${CANDY.lavender}"});`),
+    back, 4500, 5400);
+  await render(mockHTML("#1C1C1E", pathToFileURL(gmFile).href, pathToFileURL(back).href), join(dir, "mockup.png"), 2400, 1500, false);
   console.log("built", s.slug);
 }
 await browser.close();
