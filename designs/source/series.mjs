@@ -1,4 +1,4 @@
-// Series 01: ten stacked sayings in the GiggleMe tattoo-ink style + the "GM" left-chest mark.
+// Series 01: ten stacked sayings in the GiggleMe tattoo-ink style (royal blue / royal purple) + the chest logo.
 // Run: node series.mjs
 //   → ../series-01/<nn-slug>/back-print.png   (4500 × 5400 px, 300 DPI = 15 × 18 in oversize back print)
 //   → ../series-01/<nn-slug>/mockup.png        (front + back preview, to scale on a size-L tee)
@@ -9,15 +9,8 @@ import { execFileSync } from "node:child_process";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { CANDY } from "./brandmark.mjs"; // also switches the tattoo ink to cotton candy
-import { INK, rose, nauticalStar, flames, bolt } from "./tattoo.mjs";
-
-// Series 01 ink: the cotton-candy tattoo theme, darkened into gunmetal greys with dusty tints.
-export const GUN = {
-  base: "#555D68", baseDeep: "#3A4049", haze: "#6A6478", rose: "#9A6A7C", roseDeep: "#6A4656",
-  sage: "#5F7A71", sageDeep: "#3E544D", brass: "#9C8C68", shadow: "#2A2E35", gold: CANDY.gold,
-};
-Object.assign(INK, { red: GUN.rose, redDark: GUN.roseDeep, green: GUN.sage, greenDark: GUN.sageDeep, yellow: GUN.brass, teal: GUN.base, tealDark: GUN.baseDeep });
+import { ROYAL } from "./royal.mjs"; // sets the tattoo ink to the royal blue / royal purple set
+import { flames, bolt } from "./tattoo.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const out = resolve(here, "../series-01");
@@ -36,23 +29,23 @@ export const SAYINGS = [
   { slug: "10-ovrthink", lines: ["THINK", "OVRTHINK", "UNDRTHINK", "NO SLEEP"] },
 ];
 
-// Tattoo art that fills the letters, tiled in rows across any canvas size. k scales the pieces.
+// Tattoo art that fills the letters (waves, flames, lightning; no roses or stars), tiled in rows.
+// k scales the pieces.
 export function artSheet(W, H, k = 1) {
-  const parts = [`<rect width="${W}" height="${H}" fill="${GUN.base}"/>`];
+  const parts = [`<rect width="${W}" height="${H}" fill="${ROYAL.base}"/>`];
   const rowH = 560 * k;
+  const waves = (y, color) => { for (let x = -330 * k; x < W + 330 * k; x += 330 * k) parts.push(`<path d="M ${x} ${y} q ${80 * k} ${-60 * k} ${165 * k} 0 t ${165 * k} 0" fill="none" stroke="${color}" stroke-width="${16 * k}"/>`); };
   for (let r = 0, y = 0; y < H + rowH; r++, y += rowH) {
     const kind = r % 3, off = (r % 2) * 220 * k;
     if (kind === 0) {
-      for (let x = -off; x < W + 300 * k; x += 330 * k) parts.push(`<path d="M ${x} ${y + 120 * k} q ${80 * k} ${-60 * k} ${165 * k} 0 t ${165 * k} 0" fill="none" stroke="${GUN.baseDeep}" stroke-width="${16 * k}"/>`);
-      for (let x = 160 * k - off; x < W + 200 * k; x += 520 * k) parts.push(rose(x, y + 330 * k, 125 * k, [140, 30]));
-      for (let x = 420 * k - off; x < W + 200 * k; x += 520 * k) parts.push(nauticalStar(x, y + 200 * k, 70 * k, GUN.haze, (x / k) % 40));
+      waves(y + 120 * k, ROYAL.baseDeep); waves(y + 300 * k, ROYAL.sky); waves(y + 480 * k, ROYAL.baseDeep);
     } else if (kind === 1) {
-      parts.push(`<rect y="${y}" width="${W}" height="${rowH}" fill="${GUN.haze}" opacity=".55"/>`);
+      parts.push(`<rect y="${y}" width="${W}" height="${rowH}" fill="${ROYAL.purple}" opacity=".7"/>`);
       parts.push(`<g transform="translate(0 ${y + rowH}) scale(${k})">${flames(-200, W / k + 200, 0, 420)}</g>`);
     } else {
-      for (let x = 260 * k - off; x < W + 200 * k; x += 600 * k) parts.push(rose(x, y + 300 * k, 115 * k, [200, -20]));
-      for (let x = 0 - off; x < W + 200 * k; x += 600 * k) parts.push(bolt(x, y + 280 * k, 95 * k, 15));
-      for (let x = 520 * k - off; x < W + 200 * k; x += 600 * k) parts.push(nauticalStar(x, y + 160 * k, 60 * k, GUN.rose, 12));
+      waves(y + 110 * k, ROYAL.sky);
+      for (let x = 0 - off; x < W + 200 * k; x += 380 * k) parts.push(bolt(x, y + 300 * k, 110 * k, 15));
+      waves(y + 500 * k, ROYAL.baseDeep);
     }
   }
   return parts.join("");
@@ -137,7 +130,7 @@ execFileSync("node", [join(here, "chest-logo.mjs")]); // first G and M at double
 for (const s of SAYINGS) {
   const dir = join(out, s.slug), back = join(dir, "back-print.png");
   await render(page(4500, 5400, artSheet(4500, 5400, 2.3), `
-    inked(document.getElementById("s"),${JSON.stringify(s.lines)},{id:"c",cx:2250,cy:2700,width:4380,height:5000,align:"left",shadow:"${GUN.shadow}",outline:"${GUN.gold}",outlineK:0.075});`),
+    inked(document.getElementById("s"),${JSON.stringify(s.lines)},{id:"c",cx:2250,cy:2700,width:4380,height:5000,align:"left",shadow:"${ROYAL.shadow}",outline:"${ROYAL.gold}",outlineK:0.075});`),
     back, 4500, 5400);
   await render(mockHTML("#1C1C1E", pathToFileURL(gmFile).href, pathToFileURL(back).href), join(dir, "mockup.png"), 2400, 1500, false);
   console.log("built", s.slug);
