@@ -1,5 +1,5 @@
 // Official GiggleMe logo: retro script with a double-height G and M (dark matte grey, black + gold
-// outline) and the matte-gold script tagline.
+// outline) with "viciously." centered under it in plain matte-gold Inter.
 // Run: node logo-final.mjs
 //   → ../previews/logo-final.png            (on black, for review)
 //   → ../brand/giggleme-logo.png            (transparent, full lockup)
@@ -9,21 +9,21 @@ import { execFileSync } from "node:child_process";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { wordmark as mark, tagline as tag } from "./brandmark.mjs";
+import { wordmark as mark, viciously } from "./brandmark.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const font = (pkg, file) => pathToFileURL(join(here, "node_modules/@fontsource", pkg, "files", file)).href;
 
 const W = 2600, H = 1250;
 const wordmark = mark();
-const tagline = tag();
+const tagline = viciously();
 
 const page = (svg, bg, w, h, vb) => `<!doctype html><html><head><meta charset="utf-8"><style>
 @font-face{font-family:"Yellowtail";src:url(${font("yellowtail", "yellowtail-latin-400-normal.woff2")})}
-@font-face{font-family:"Pinyon Script";src:url(${font("pinyon-script", "pinyon-script-latin-400-normal.woff2")})}
+@font-face{font-family:"Inter";src:url(${font("inter", "inter-latin-400-normal.woff2")})}
 html,body{margin:0;background:${bg}} svg{display:block}</style></head><body>
 <svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="${vb}">${svg}</svg>
-<script>document.fonts.load('100px Yellowtail').then(()=>document.fonts.load('100px "Pinyon Script"')).then(()=>document.body.dataset.ready=1)</script></body></html>`;
+<script>document.fonts.load('100px Yellowtail').then(()=>document.fonts.load('100px Inter')).then(()=>document.body.dataset.ready=1)</script></body></html>`;
 
 const browser = await chromium.launch();
 async function shot(html, file, w, h, transparent) {

@@ -96,12 +96,12 @@ document.fonts.load('100px Rye').then(()=>document.fonts.load('100px "Pinyon Scr
 // Tee silhouettes for previews, to scale on a size-L tee (~20 in chest ≈ 720 px → 36 px per inch).
 // Front: GM on the wearer's left chest (viewer's right). Back: the 15 × 18 in print below the collar.
 const TEE = "M 330 90 Q 600 190 870 90 L 1150 230 L 1080 520 L 960 480 L 960 1340 Q 600 1380 240 1340 L 240 480 L 120 520 L 50 230 Z";
-const mockHTML = (shirt, frontPng, backPng) => `<!doctype html><html><head><meta charset="utf-8"><style>
+const mockHTML = (shirt, frontPng, backPng, frontH = 63) => `<!doctype html><html><head><meta charset="utf-8"><style>
 @font-face{font-family:"Rye";src:url(${font("rye", "rye-latin-400-normal.woff2")})}
 html,body{margin:0;background:#ECEAE4}</style></head><body>
 <svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1500" viewBox="0 0 2400 1500">
   <g><path d="${TEE}" fill="${shirt}" stroke="#000" stroke-width="4"/><path d="M 470 120 Q 600 200 730 120" fill="none" stroke="#000" stroke-width="6"/>
-     <image href="${frontPng}" x="680" y="285" width="144" height="63"/></g>
+     <image href="${frontPng}" x="680" y="285" width="144" height="${frontH}"/></g>
   <g transform="translate(1200 0)"><path d="${TEE}" fill="${shirt}" stroke="#000" stroke-width="4"/><path d="M 470 112 Q 600 136 730 112" fill="none" stroke="#000" stroke-width="6"/>
      <image href="${backPng}" x="330" y="190" width="540" height="648"/></g>
   <text x="600" y="1450" text-anchor="middle" font-family="Rye" font-size="44" fill="#5A4E60">FRONT</text>
@@ -125,7 +125,8 @@ async function render(html, file, w, h, transparent = true) {
 
 // Front left chest: the GiggleMe wordmark with a big G and M, 4 in wide (1200 px at 300 DPI).
 const gmFile = join(out, "logo-left-chest.png");
-execFileSync("node", [join(here, "chest-logo.mjs")]); // first G and M at double height
+execFileSync("node", [join(here, "chest-logo.mjs")]); // first G and M at double height, "viciously." under it
+const [cw, ch] = execFileSync("identify", ["-format", "%w %h", gmFile]).toString().split(" ").map(Number);
 
 // Back prints: the stacked saying at Printful's biggest back size, 4500 × 5400 (15 × 18 in).
 // One letter size, every line starts at the same left edge, block centered top to bottom.
@@ -134,7 +135,7 @@ for (const s of SAYINGS) {
   await render(page(4500, 5400, `<rect width="4500" height="5400" fill="${ROYAL.grey}"/>`, `
     inked(document.getElementById("s"),${JSON.stringify(s.lines)},{id:"c",cx:2250,cy:2700,width:4380,height:5000,align:"left",shadow:"${ROYAL.black}",outline:"${ROYAL.gold}",outlineK:0.13,inline:"${ROYAL.black}",inlineK:0.075});`),
     back, 4500, 5400);
-  await render(mockHTML("#1C1C1E", pathToFileURL(gmFile).href, pathToFileURL(back).href), join(dir, "mockup.png"), 2400, 1500, false);
+  await render(mockHTML("#1C1C1E", pathToFileURL(gmFile).href, pathToFileURL(back).href, (144 * ch / cw).toFixed(1)), join(dir, "mockup.png"), 2400, 1500, false);
   console.log("built", s.slug);
 }
 await browser.close();

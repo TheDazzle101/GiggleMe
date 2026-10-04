@@ -32,6 +32,10 @@ export function wordmark() {
     L(`fill="${LOGO.fill}"`);
 }
 
+// The one word under the logo: plain Inter, lowercase, small, in matte gold.
+export const viciously = (y = 1135, size = 130, x = 1300) =>
+  `<text x="${x}" y="${y}" text-anchor="middle" font-family="Inter" font-weight="400" font-size="${size}" fill="${LOGO.gold}">viciously.</text>`;
+
 export const tagline = (y = 1150, size = 120, x = 1300) =>
   `<text x="${x}" y="${y}" text-anchor="middle" font-family="Pinyon Script" font-size="${size}" fill="${CANDY.gold}">We hope to always Giggleyou Viciously</text>`;
 
