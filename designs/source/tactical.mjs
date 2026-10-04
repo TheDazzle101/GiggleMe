@@ -151,3 +151,9 @@ export function tacticalWord(word, colors, accentFrom = 6) {
 export const TACTICAL_DEFS = `
   <linearGradient id="brass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3D88C"/><stop offset=".45" stop-color="#C99B3E"/><stop offset="1" stop-color="#7E5A1E"/></linearGradient>
   <linearGradient id="copper" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F0A77A"/><stop offset=".5" stop-color="#B8653A"/><stop offset="1" stop-color="#6E3518"/></linearGradient>`;
+
+// Same letters, returned one by one ({ ch, svg, w }) so they can be laid out on a curve.
+export function tacticalLetters(word, colors, accentFrom = 6) {
+  return [...word].map((ch, i) => ({ ch, svg: LETTERS[ch].draw(i >= accentFrom ? colors.accent : colors.base), w: LETTERS[ch].w }));
+}
+export const LETTER_GAP = GAP, LETTER_CAP = CAP;
