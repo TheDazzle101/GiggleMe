@@ -19,7 +19,7 @@ const font = (pkg, file) => pathToFileURL(join(here, "node_modules/@fontsource",
 export const SAYINGS = [
   { slug: "01-lidda-sno", lines: ["LIDDA SNO", "LIDDA BLO", "KUPPA HOS", "LETS RO"] },
   { slug: "02-firs-koffee", lines: ["FIRS KOFFEE", "DEN TALKEE", "SEKOND KOFFEE", "DEN WALKEE"] },
-  { slug: "03-jingl-mingl", lines: ["JINGL", "MINGL", "EGGNOG", "STILL SINGL"] },
+  { slug: "03-lidda-sun", lines: ["LIDDA SUN", "LIDDA FUN", "KUPPA RUM", "YEE SON"] },
   { slug: "04-planz-canseld", lines: ["PLANZ", "CANSELD", "PJZ ON", "LYF GUD"] },
   { slug: "05-walkies-zoomies", lines: ["WALKIES", "TREETSIES", "ZOOMIES", "SNOOZIES"] },
   { slug: "06-payday-broke-agen", lines: ["PAYDAY", "PAY RENT", "PAY BILLZ", "BROKE AGEN"] },

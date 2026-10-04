@@ -6,7 +6,7 @@
 
 Ten tees: the **GiggleMe logo** (with a double-height G and M) on the front left chest, and a stacked saying across the back at Printful's biggest back size. Front and back letters match: a clean, flat **matte grey** inside every letter, with a hard **bold black outline** and a **matte-gold outer outline**, plus a black drop shadow. Every letter on a back is the same size, every line starts at the same left edge, and the block is centered top to bottom.
 
-**Ready to list:** the first two shirts have store photos, ads and copy-paste listings in [SHOPIFY.md](SHOPIFY.md).
+**Ready to list:** the first three shirts have store photos, ads and copy-paste listings in [SHOPIFY.md](SHOPIFY.md).
 
 ## Files
 
@@ -33,7 +33,7 @@ This grey, black and gold look works on **black, charcoal, navy and heather** sh
 |---|---|---|---|
 | 01 | Lidda Sno Tee | Lidda sno. Lidda blo. Kuppa hos. Lets ro. | theme-sayings |
 | 02 | Firs Koffee Tee | The morning routine, spelled the way it feels before coffee. | theme-truth |
-| 03 | Jingl Mingl Tee | Jingl. Mingl. Eggnog. Still singl. The holiday party, summed up. | theme-current |
+| 03 | Lidda Sun Tee | Lidda sun. Lidda fun. Kuppa rum. Yee son. Summer, handled. | theme-sayings |
 | 04 | Planz Canseld Tee | The best text you'll get all week. PJs on, life good. | theme-truth |
 | 05 | Walkies Zoomies Tee | A dog's whole schedule. Walkies, treetsies, zoomies, snoozies. | theme-punchline |
 | 06 | Payday Broke Agen Tee | Payday lasts about four minutes. This shirt lasts longer. | theme-current |

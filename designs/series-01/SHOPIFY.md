@@ -1,6 +1,6 @@
-# Series 01 on Shopify: first two shirts
+# Series 01 on Shopify: first three shirts
 
-Everything you need to list **Lidda Sno** and **Firs Koffee**. Copy each box straight into Shopify.
+Everything you need to list **Lidda Sno**, **Firs Koffee** and **Lidda Sun**. Copy each box straight into Shopify.
 
 The images are in each shirt's `shopify/` folder (2048 × 2048 store photos, plus a 4:5 feed ad and a 9:16 story ad). The print files are `logo-left-chest.png` (front) and `<shirt>/back-print.png` (back).
 
@@ -117,6 +117,51 @@ The morning rules, printed big across your back so nobody has to ask. Matte grey
 
 ---
 
+## Lidda Sun Tee
+
+**Title**
+```
+Lidda Sun Tee
+```
+
+**Price:** S–XL **$34.99** · 2XL **$36.99** · 3XL **$37.99**
+
+**Description**
+```
+Lidda sun. Lidda fun. Kuppa rum. Yee son.
+
+The summer sequel to Lidda Sno. The whole saying runs big across the back in matte grey letters with a hard black and gold outline, and the GiggleMe logo sits on the left chest. Wear one in winter, one in summer.
+
+• Big 15 × 18 in back print, GiggleMe logo on the front left chest
+• Bella+Canvas 3001: super soft, 100% combed ring-spun cotton (Black and Navy)
+• Lightweight 4.2 oz, side-seamed, pre-shrunk, unisex retail fit
+• Printed just for you when you order
+• Fits true to size. Size up for a roomier fit
+```
+
+**Tags:** `series-01, theme-sayings, funny shirt, back print, summer, beach, rum, giggleme`
+
+**Search engine listing**
+- Page title: `Lidda Sun Funny Summer T-Shirt | GiggleMe`
+- Meta description: `Lidda sun. Lidda fun. Kuppa rum. Yee son. The summer sequel to Lidda Sno: a big stacked back print with the GiggleMe logo on the chest.`
+- URL handle: `lidda-sun-tee`
+
+**Images (in this order) and alt text**
+
+| # | File | Alt text |
+|---|---|---|
+| 1 | `back.jpg` | Black GiggleMe tee, back: LIDDA SUN, LIDDA FUN, KUPPA RUM, YEE SON in grey letters with black and gold outline |
+| 2 | `front.jpg` | Black GiggleMe tee, front: GiggleMe logo with viciously. on the left chest |
+| 3 | `front-back.jpg` | Lidda Sun tee, front and back |
+| 4 | `print-closeup.jpg` | Close-up of the Lidda Sun back print |
+| 5 | `chest-closeup.jpg` | Close-up of the GiggleMe chest logo |
+| 6 | `back-navy.jpg` | Navy Lidda Sun tee, back |
+| 7 | `front-navy.jpg` | Navy Lidda Sun tee, front |
+
+**Before you run ads:** it mentions rum, so set paid ads to ages 21+ (Meta and TikTok require it for alcohol references).
+
+---
+
 ## Ads
 
 Each `shopify/` folder also has:
@@ -127,4 +172,4 @@ Order one of each shirt for yourself before running paid ads. Real photos of you
 
 ## Rebuild the images
 
-`cd ../source && node ads.mjs 01-lidda-sno 02-firs-koffee`. Pass any other shirt's folder name to make its set.
+`cd ../source && node ads.mjs 01-lidda-sno 02-firs-koffee 03-lidda-sun`. Pass any other shirt's folder name to make its set.
