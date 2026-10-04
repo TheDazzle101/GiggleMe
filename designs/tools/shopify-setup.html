@@ -1,0 +1,343 @@
+<title>GiggleMe Shopify Setup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yellowtail&family=Archivo:wght@400;600;800&display=swap">
+<style>
+/* Layout: one reading column. A short "what works in his store" strip, then 12 setup steps you tick off (saved in this browser), each with exact clicks and copy-paste text. Single dark look matching the brand. */
+:root{
+  --bg:#121214; --panel:#1B1C20; --sunk:#232429; --line:#2E3037; --ink:#EDEBE6; --muted:#A6A4AC; --gold:#C9A86C; --royal:#8C9BFF; --done:#6FCF9F;
+  --display:"Yellowtail","Brush Script MT",cursive;
+  --body:"Archivo","Segoe UI",system-ui,sans-serif;
+  --mono:ui-monospace,Consolas,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+.wrap{max-width:860px;margin:0 auto;padding-inline:16px;padding-block:32px 80px}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(44px,7vw,68px);line-height:1;margin:0}
+h1 span{color:var(--gold)}
+.lede{color:var(--muted);max-width:62ch;margin:10px 0 0}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:3;background:var(--bg);padding-block:12px;margin:22px 0 18px;border-bottom:1px solid var(--line)}
+.bar-row{display:flex;justify-content:space-between;gap:12px;font-variant-numeric:tabular-nums;font-size:14px;color:var(--muted)}
+.bar-row b{color:var(--ink);font-size:16px}
+.track{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin-top:8px}
+.fill{height:100%;width:0;background:linear-gradient(90deg,#3050D0,#6A2FB8);transition:width .3s}
+h2{font-weight:800;font-size:22px;line-height:1.2;margin:0;text-wrap:balance}
+.proven{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px 22px;display:flex;flex-direction:column;gap:12px;margin-bottom:22px}
+.proven p.sub{margin:0;color:var(--muted);font-size:14.5px}
+.moves{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 22px;margin:0;padding:0;list-style:none}
+@media (max-width:640px){.moves{grid-template-columns:minmax(0,1fr)}}
+.moves li{border-top:2px solid var(--gold);padding-top:8px;font-size:14.5px}
+.moves b{display:block;font-size:15.5px}
+.moves .ts{font-family:var(--mono);font-size:12px;color:var(--muted)}
+ol.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:16px}
+.step.complete{border-color:var(--done)}
+.shead{display:flex;gap:14px;align-items:flex-start;padding:18px 18px 6px}
+.num{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:800;background:#3050D0;color:#fff;font-variant-numeric:tabular-nums}
+.complete .num{background:var(--done);color:#0E1A14}
+.shead h2{font-size:19px;margin-top:4px}
+.shead p{margin:2px 0 0;color:var(--muted);font-size:14.5px}
+.from{display:inline-block;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;color:var(--gold);margin-top:6px}
+.from.mine{color:var(--royal)}
+.sbody{padding:4px 18px 20px 66px;display:flex;flex-direction:column;gap:14px}
+@media (max-width:620px){.sbody{padding-left:18px}}
+.task{display:flex;flex-direction:column;gap:6px}
+.task>label{display:flex;gap:10px;align-items:flex-start;font-weight:600;cursor:pointer}
+.task input{flex:none;width:20px;height:20px;margin-top:2px;accent-color:var(--done);cursor:pointer}
+.task.checked>label span{color:var(--muted);text-decoration:line-through}
+.how{margin:0 0 0 30px;padding-left:18px;font-size:14.5px;display:flex;flex-direction:column;gap:3px;color:#D6D4CF}
+.how li::marker{color:var(--muted)}
+code{font-family:var(--mono);font-size:13px;background:var(--sunk);border-radius:5px;padding:1px 6px;color:var(--ink);overflow-wrap:anywhere}
+.copyblock{border:1px solid var(--line);border-radius:12px;background:var(--sunk);margin-left:30px}
+@media (max-width:620px){.copyblock,.how{margin-left:0}}
+.cb-head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 12px;border-bottom:1px solid var(--line);font-size:13.5px;font-weight:600}
+.cb-head small{font-weight:400;color:var(--muted)}
+.copyblock pre{margin:0;padding:12px;white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.55 var(--body);max-height:340px;overflow:auto}
+button.copy{flex:none;background:none;border:1px solid var(--gold);color:var(--gold);border-radius:8px;padding:4px 12px;font:600 13px var(--body);cursor:pointer}
+button.copy:hover{background:var(--gold);color:#111}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--royal);outline-offset:2px}
+.tip{margin-left:30px;background:#1E2238;border:1px solid #2F3766;color:#C9D0FF;border-radius:10px;padding:9px 12px;font-size:14px}
+@media (max-width:620px){.tip{margin-left:0}}
+.tbl{overflow-x:auto;margin-left:30px}
+@media (max-width:620px){.tbl{margin-left:0}}
+table{border-collapse:collapse;font-size:14px;min-width:460px;width:100%}
+th,td{text-align:left;padding:6px 10px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.swatch{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;margin-right:6px;border:1px solid #555}
+.foot{margin-top:28px;color:var(--muted);font-size:14px;border-top:1px solid var(--line);padding-top:14px}
+.reset{background:none;border:none;color:var(--muted);text-decoration:underline;font:inherit;cursor:pointer;padding:0}
+@media (prefers-reduced-motion:reduce){.fill{transition:none}}
+</style>
+
+<div class="wrap">
+  <h1>Giggle<span>Me</span> Shopify setup</h1>
+  <p class="lede">Your store, set up the way Bryson's works, plus a few upgrades. Do the steps in order. Every box you tick is saved in this browser.</p>
+
+  <div class="bar" aria-live="polite">
+    <div class="bar-row"><b id="count">0 of 0 done</b><span id="pct">0%</span></div>
+    <div class="track"><div class="fill" id="fill"></div></div>
+  </div>
+
+  <div class="proven">
+    <h2>What his store does that sells</h2>
+    <p class="sub">From his interview. Each one is built into the steps below and marked <span class="from" style="margin:0">From his store</span>. My additions are marked <span class="from mine" style="margin:0">Upgrade</span>.</p>
+    <ul class="moves">
+      <li><b>A free Shopify template</b>No custom website. He picked a prebuilt theme and spent about $0 starting. <span class="ts">5:05</span></li>
+      <li><b>Selling before the site was live</b>Videos went up two weeks early, and people were asking how to order. <span class="ts">3:23</span></li>
+      <li><b>An email pop-up on the first visit</b>Everyone who lands gets asked for their email. <span class="ts">23:52</span></li>
+      <li><b>Five-star reviews everywhere</b>Reviews build trust for people who don't know the brand yet. <span class="ts">24:10</span></li>
+      <li><b>Auto review request, 10% off for photos</b>A few days after delivery, an email asks for a review. Photo or video reviews get 10% off the next order. <span class="ts">7:12</span></li>
+      <li><b>"You checked this out" email with a code</b>Visitors who looked at a shirt but didn't buy get a discount code. <span class="ts">23:35</span></li>
+      <li><b>Abandoned cart email</b>Added to cart, left at checkout, gets a reminder. <span class="ts">23:47</span></li>
+      <li><b>Seasonal collections</b>Back-to-school in August, a whole Halloween collection, Black Friday and Christmas. Fall is his biggest season. <span class="ts">6:48</span></li>
+      <li><b>New designs go up right away</b>Add a design, and if it doesn't sell, it doesn't matter. Print on demand costs nothing to test. <span class="ts">19:20</span></li>
+      <li><b>Printful does the rest</b>Printing, shipping, some customer support, and storing returned shirts. <span class="ts">1:13</span></li>
+    </ul>
+  </div>
+
+  <ol class="steps" id="steps">
+
+  <li class="step" data-step="1"><div class="shead"><span class="num">1</span><div><h2>Create the store</h2><p>Account, plan and store details.</p><span class="from">From his store</span></div></div>
+    <div class="sbody">
+      <div class="task"><label><input type="checkbox" id="t1a"><span>Start the trial and name the store</span></label>
+        <ol class="how"><li>Go to shopify.com → Start free trial. Use your brand email, not your personal one.</li><li>Store name: <code>GiggleMe</code>. Store currency: US dollar.</li><li>When the trial ends, pick the <b>Basic</b> plan. It has everything here.</li></ol></div>
+      <div class="task"><label><input type="checkbox" id="t1b"><span>Fill in store details</span></label>
+        <ol class="how"><li><code>Settings → General</code>: store email = your brand email, sender email the same.</li><li>Add your business address (customers don't see it, but taxes and payouts need it).</li></ol></div>
+    </div></li>
+
+  <li class="step" data-step="2"><div class="shead"><span class="num">2</span><div><h2>Put the store behind a password with a sign-up</h2><p>Your TikToks go up before launch, and this page catches every email.</p><span class="from">From his store</span></div></div>
+    <div class="sbody">
+      <div class="task"><label><input type="checkbox" id="t2a"><span>Turn on the password page</span></label>
+        <ol class="how"><li><code>Online Store → Preferences → Password protection</code> → turn on, set a password only you know.</li><li>In the theme editor, open the <b>Password</b> page template. Add your logo and an email sign-up block, then paste the text below.</li></ol></div>
+      <div class="copyblock"><div class="cb-head"><span>Password page text</span><button class="copy">Copy</button></div><pre>The first drop is almost here.
+Funny shirts that say it for you. Lidda Sno, Firs Koffee, Lidda Sun and more.
+Get on the list and get 10% off launch day.
+
+We hope to always Giggleyou Viciously.</pre></div>
+      <div class="tip">Put this page's address in your TikTok and Instagram bio until launch day.</div>
+    </div></li>
+
+  <li class="step" data-step="3"><div class="shead"><span class="num">3</span><div><h2>Pick a free theme and brand it</h2><p>Logo, colors and fonts only. Don't build anything custom.</p><span class="from">From his store</span></div></div>
+    <div class="sbody">
+      <div class="task"><label><input type="checkbox" id="t3a"><span>Use the free theme Shopify gives you</span></label>
+        <ol class="how"><li><code>Online Store → Themes</code>. Keep the default free theme, or add <b>Dawn</b> from the free themes. Both are fast and clean on phones.</li><li>Click <b>Customize</b>.</li></ol></div>
+      <div class="task"><label><input type="checkbox" id="t3b"><span>Logo and favicon</span></label>
+        <ol class="how"><li>Header → Logo: upload <code>designs/brand/giggleme-wordmark.png</code>. Set the logo width to about 160 px.</li><li>Theme settings → Logo → Favicon: upload <code>designs/brand/social/profile-picture-monogram.png</code>.</li></ol></div>
+      <div class="task"><label><input type="checkbox" id="t3c"><span>Colors and fonts</span></label>
+        <ol class="how"><li>Theme settings → Colors. Use these:</li></ol>
+        <div class="tbl"><table><thead><tr><th>Where</th><th>Color</th></tr></thead><tbody>
+          <tr><td>Page background</td><td><span class="swatch" style="background:#F6F4F0"></span><code>#F6F4F0</code> warm white, matches your product photos</td></tr>
+          <tr><td>Text</td><td><span class="swatch" style="background:#141416"></span><code>#141416</code></td></tr>
+          <tr><td>Header, footer, announcement bar</td><td><span class="swatch" style="background:#141416"></span><code>#141416</code> with white text</td></tr>
+          <tr><td>Buttons</td><td><span class="swatch" style="background:#3050D0"></span><code>#3050D0</code> royal blue, white text</td></tr>
+          <tr><td>Sale badges, accents</td><td><span class="swatch" style="background:#B8955A"></span><code>#B8955A</code> matte gold</td></tr>
+        </tbody></table></div>
+        <ol class="how" start="2"><li>Theme settings → Typography: a bold, plain font for headings (for example Work Sans, weight 700) and the same family for body text. Plain fonts let the shirts be the loud part.</li></ol></div>
+    </div></li>
+
+  <li class="step" data-step="4"><div class="shead"><span class="num">4</span><div><h2>Add the shirts through Printful</h2><p>Products must come from Printful so orders print and ship themselves.</p><span class="from">From his store</span></div></div>
+    <div class="sbody">
+      <div class="task"><label><input type="checkbox" id="t4a"><span>Install Printful and connect it</span></label>
+        <ol class="how"><li>Shopify <code>Apps</code> → search Printful → Install → log in to Printful and approve.</li><li>Printful → <code>Settings → Billing</code>: add a card. Printful charges per order, and your Shopify payout lands about a day later.</li></ol></div>
+      <div class="task"><label><input type="checkbox" id="t4b"><span>Add Lidda Sno, Firs Koffee and Lidda Sun</span></label>
+        <ol class="how"><li>Follow <code>designs/series-01/SHOPIFY.md</code>. It has the Printful settings, titles, descriptions, prices, tags and photo order for all three.</li><li>Save the first one as a Printful product template, then reuse it for every new shirt.</li></ol></div>
+      <div class="tip">Add new designs as fast as you make them. He doesn't wait to see if one will sell. The store decides for him.</div>
+    </div></li>
+
+  <li class="step" data-step="5"><div class="shead"><span class="num">5</span><div><h2>Collections</h2><p>Automatic collections fill themselves from your product tags.</p><span class="from">From his store</span></div></div>
+    <div class="sbody">
+      <div class="task"><label><input type="checkbox" id="t5a"><span>Create these collections</span></label>
+        <ol class="how"><li><code>Products → Collections → Create collection</code> → choose <b>Automated</b> → add the condition shown.</li></ol>
+        <div class="tbl"><table><thead><tr><th>Collection</th><th>Condition</th><th>Sort</th></tr></thead><tbody>
+          <tr><td>Shop All</td><td>Price is greater than 0</td><td>Best selling</td></tr>
+          <tr><td>New Drops</td><td>Price is greater than 0</td><td>Newest</td></tr>
+          <tr><td>Best Sellers</td><td>Price is greater than 0</td><td>Best selling</td></tr>
+          <tr><td>Series 01</td><td>Tag is equal to <code>series-01</code></td><td>Manual</td></tr>
+          <tr><td>The Lidda Saga</td><td>Title contains <code>Lidda</code></td><td>Newest</td></tr>
+          <tr><td>Coffee</td><td>Tag is equal to <code>coffee</code></td><td>Best selling</td></tr>
+        </tbody></table></div></div>
+      <div class="task"><label><input type="checkbox" id="t5b"><span>Plan the seasonal collections</span></label>
+        <ol class="how"><li>Same way, by tag: <code>back-to-school</code> (live by Aug 1), <code>halloween</code> (Sept 1), <code>holiday</code> (Nov 1, covers Black Friday and Christmas).</li><li>He says fall is when people spend the most. Have each one stocked a month before the holiday.</li></ol></div>
+    </div></li>
+
+  <li class="step" data-step="6"><div class="shead"><span class="num">6</span><div><h2>Menus</h2><p>Short top menu, everything else in the footer.</p></div></div>
+    <div class="sbody">
+      <div class="task"><label><input type="checkbox" id="t6a"><span>Main menu</span></label>
+        <ol class="how"><li><code>Online Store → Navigation → Main menu</code>: New Drops · Best Sellers · The Lidda Saga · Shop All</li><li>Add the seasonal collection to the front of the menu while it's in season.</li></ol></div>
+      <div class="task"><label><input type="checkbox" id="t6b"><span>Footer menu</span></label>
+        <ol class="how"><li>About · FAQ · Size Chart · Shipping &amp; Returns · Contact · Track My Order (step 10 makes these pages).</li></ol></div>
+    </div></li>
+
+  <li class="step" data-step="7"><div class="shead"><span class="num">7</span><div><h2>Homepage</h2><p>Six sections, top to bottom. Use the theme's built-in sections.</p></div></div>
+    <div class="sbody">
+      <div class="task"><label><input type="checkbox" id="t7a"><span>Build the homepage in this order</span></label>
+        <div class="tbl"><table><thead><tr><th>Section</th><th>What goes in it</th></tr></thead><tbody>
+          <tr><td>Announcement bar</td><td>New drop every Friday · 10% off your first order</td></tr>
+          <tr><td>Image banner</td><td><code>01-lidda-sno/shopify/ad-feed-4x5.jpg</code>, heading and button below</td></tr>
+          <tr><td>Featured collection</td><td>New Drops, 8 products</td></tr>
+          <tr><td>Reviews</td><td>The review app's homepage block (step 8)</td></tr>
+          <tr><td>Featured collection</td><td>The Lidda Saga</td></tr>
+          <tr><td>Image with text</td><td>The about text below, with <code>02-firs-koffee/shopify/print-closeup.jpg</code></td></tr>
+          <tr><td>Email sign-up</td><td>"Get first dibs on every drop" (text below)</td></tr>
+        </tbody></table></div></div>
+      <div class="copyblock"><div class="cb-head"><span>Banner heading, text and button</span><button class="copy">Copy</button></div><pre>Shirts that say it for you.
+Read it out loud. Try not to laugh.
+Shop the drop</pre></div>
+      <div class="copyblock"><div class="cb-head"><span>Image with text (homepage about)</span><button class="copy">Copy</button></div><pre>Funny, on purpose.
+Every GiggleMe shirt is one short saying, printed big across the back, so the people behind you get the joke first. Each one is printed just for you when you order.
+We hope to always Giggleyou Viciously.</pre></div>
+      <div class="copyblock"><div class="cb-head"><span>Email sign-up section</span><button class="copy">Copy</button></div><pre>Get first dibs on every drop.
+New shirts every Friday, plus 10% off your first order.</pre></div>
+    </div></li>
+
+  <li class="step" data-step="8"><div class="shead"><span class="num">8</span><div><h2>Reviews that ask for themselves</h2><p>His best revenue driver: an automatic review request, with 10% off for a photo or video review.</p><span class="from">From his store</span></div></div>
+    <div class="sbody">
+      <div class="task"><label><input type="checkbox" id="t8a"><span>Install a review app</span></label>
+        <ol class="how"><li><code>Apps</code> → search <b>Judge.me</b> → Install. The free plan covers review emails, photo reviews and star ratings.</li><li>Add its star rating under the product title and its review block on product pages and the homepage.</li></ol></div>
+      <div class="task"><label><input type="checkbox" id="t8b"><span>Time the review request for print on demand</span></label>
+        <ol class="how"><li>Judge.me → Settings → Review request: send <b>7 days after fulfillment</b>. Printful takes a few days to print, then shipping, so this lands a few days after delivery, like his.</li><li>Paste the email below.</li></ol></div>
+      <div class="task"><label><input type="checkbox" id="t8c"><span>Turn on 10% off for photo and video reviews</span></label>
+        <ol class="how"><li>In Judge.me, turn on review coupons and set them to 10% off, for photo and video reviews only. This may need a paid Judge.me plan; it pays for itself once orders start.</li></ol></div>
+      <div class="copyblock"><div class="cb-head"><span>Review request email <small>subject, then body</small></span><button class="copy">Copy</button></div><pre>Subject: Did it make anyone laugh yet?
+
+Hey {{ customer name }},
+
+Your GiggleMe shirt should be with you by now. Did someone read it out loud yet?
+
+Tell us how it went in a quick review. Add a photo or video of you wearing it and we'll send you 10% off your next shirt.
+
+[Leave a review]
+
+We hope to always Giggleyou Viciously.
+GiggleMe</pre></div>
+    </div></li>
+
+  <li class="step" data-step="9"><div class="shead"><span class="num">9</span><div><h2>Pop-up and automatic emails</h2><p>The pop-up collects emails. The automations turn them into sales. Shopify does both for free.</p><span class="from">From his store</span></div></div>
+    <div class="sbody">
+      <div class="task"><label><input type="checkbox" id="t9a"><span>First-visit pop-up</span></label>
+        <ol class="how"><li><code>Apps</code> → install <b>Shopify Forms</b> (free) → Create form → Pop-up.</li><li>Offer: 10% off the first order. Shopify makes the code and emails it.</li><li>Show it after about 5 seconds, once per visitor.</li></ol></div>
+      <div class="copyblock"><div class="cb-head"><span>Pop-up text</span><button class="copy">Copy</button></div><pre>Wanna giggle?
+Get 10% off your first shirt and first dibs on every Friday drop.
+[Email] [Get my 10%]
+No thanks, I'm already hilarious</pre></div>
+      <div class="task"><label><input type="checkbox" id="t9b"><span>Turn on four automations</span></label>
+        <ol class="how"><li><code>Marketing → Automations → Create automation</code>. Start from Shopify's templates, then swap in the text below.</li><li>Shopify Email is free for your first 10,000 emails a month.</li></ol></div>
+      <div class="copyblock"><div class="cb-head"><span>1 · Welcome <small>sent right after the pop-up</small></span><button class="copy">Copy</button></div><pre>Subject: Here's your 10%. Use it viciously.
+
+Welcome to GiggleMe. Your code: {{ discount code }}
+
+Every shirt is one short saying printed big across the back. Start with the ones people can't stop reading out loud:
+[Lidda Sno] [Firs Koffee] [Lidda Sun]
+
+New drop every Friday. You'll hear about it first.</pre></div>
+      <div class="copyblock"><div class="cb-head"><span>2 · "You checked this out" <small>browse abandonment, 1 hour</small></span><button class="copy">Copy</button></div><pre>Subject: You were looking at this one...
+
+It's still here. It's still funny.
+Here's 10% off to make it yours: {{ discount code }}
+
+[Finish the joke]</pre></div>
+      <div class="copyblock"><div class="cb-head"><span>3 · Abandoned cart <small>1 hour, then 24 hours</small></span><button class="copy">Copy</button></div><pre>Subject: Your shirt is waiting by the door
+
+You left this in your cart. It's printed just for you when you order, so it's ready when you are.
+
+[Back to my cart]</pre></div>
+      <div class="copyblock"><div class="cb-head"><span>4 · Abandoned checkout <small>1 hour</small></span><button class="copy">Copy</button></div><pre>Subject: So close. Like, one click close.
+
+You were one step from wearing the joke. Your checkout is saved.
+
+[Finish checking out]</pre></div>
+      <div class="tip">Put the 10% code in the browse email only, as he does. A code in every email teaches people to wait for one.</div>
+    </div></li>
+
+  <li class="step" data-step="10"><div class="shead"><span class="num">10</span><div><h2>Pages and policies</h2><p>The trust pages people check before buying from a brand they don't know.</p></div></div>
+    <div class="sbody">
+      <div class="task"><label><input type="checkbox" id="t10a"><span>Generate the legal policies</span></label>
+        <ol class="how"><li><code>Settings → Policies</code> → create from template: Refund, Privacy, Terms of service, Shipping. Then paste the returns text below into the Refund policy.</li></ol></div>
+      <div class="copyblock"><div class="cb-head"><span>Shipping &amp; Returns page</span><button class="copy">Copy</button></div><pre>Every GiggleMe shirt is printed just for you after you order.
+
+Printing: 2–5 business days.
+US shipping: 3–5 business days after it prints.
+You'll get a tracking link by email as soon as it ships.
+
+Misprinted, damaged or wrong item? Email us a photo within 30 days of delivery and we'll send a free replacement.
+
+Wrong size? Because each shirt is made to order, we can't take returns for size, so check the size chart before ordering. If it's still not right, email us and we'll work it out.</pre></div>
+      <div class="copyblock"><div class="cb-head"><span>About page</span><button class="copy">Copy</button></div><pre>GiggleMe makes shirts that say it for you.
+
+Every design is one short, sharp saying, printed big across the back so the people behind you get the joke first. Some are clever. Some are brutally true. Some are sayings we upgraded. All of them are meant to be read out loud.
+
+Our best ideas come from you. Drop a saying in our TikTok comments and the funniest ones get printed.
+
+Every shirt is printed just for you when you order, on soft Bella+Canvas cotton.
+
+We hope to always Giggleyou Viciously.</pre></div>
+      <div class="copyblock"><div class="cb-head"><span>FAQ page</span><button class="copy">Copy</button></div><pre>How do the shirts fit?
+Unisex and true to size. Size up for a roomier fit. See the size chart.
+
+What are they made of?
+Bella+Canvas 3001: soft, lightweight, 100% combed ring-spun cotton on Black and Navy.
+
+How long does it take?
+2–5 business days to print, then 3–5 to ship in the US.
+
+How do I wash it?
+Inside out, cold water, hang dry or low heat. The print lasts longer that way.
+
+Can I suggest a saying?
+Please do. Comment it on our TikTok. If we print it, we'll tag you.</pre></div>
+      <div class="task"><label><input type="checkbox" id="t10b"><span>Size Chart and Contact pages</span></label>
+        <ol class="how"><li><code>Online Store → Pages → Add page</code> for each. Contact: choose the <b>Contact</b> template so it shows a form.</li><li>Size chart for the Bella+Canvas 3001 (inches):</li></ol>
+        <div class="tbl"><table><thead><tr><th>Size</th><th>S</th><th>M</th><th>L</th><th>XL</th><th>2XL</th><th>3XL</th></tr></thead><tbody>
+          <tr><td>Chest width</td><td>18</td><td>20</td><td>22</td><td>24</td><td>26</td><td>28</td></tr>
+          <tr><td>Length</td><td>28</td><td>29</td><td>30</td><td>31</td><td>32</td><td>33</td></tr>
+        </tbody></table></div>
+        <ol class="how" start="3"><li>Double-check these against the size chart on Printful's product page before you publish.</li></ol></div>
+    </div></li>
+
+  <li class="step" data-step="11"><div class="shead"><span class="num">11</span><div><h2>Shipping, payments and taxes</h2><p>Make sure money comes in and orders reach Printful.</p></div></div>
+    <div class="sbody">
+      <div class="task"><label><input type="checkbox" id="t11a"><span>Shipping rates</span></label>
+        <ol class="how"><li><code>Settings → Shipping and delivery</code> → United States: Standard <b>$4.99</b>, and <b>free over $60</b>.</li><li>Two shirts cost about $70, so free shipping nudges people to add a second one.</li></ol>
+        <span class="from mine" style="margin-left:30px">Upgrade</span></div>
+      <div class="task"><label><input type="checkbox" id="t11b"><span>Payments</span></label>
+        <ol class="how"><li><code>Settings → Payments</code> → activate Shopify Payments (bank account and tax ID).</li><li>Turn on Shop Pay, Apple Pay and Google Pay, and add PayPal.</li></ol></div>
+      <div class="task"><label><input type="checkbox" id="t11c"><span>Taxes</span></label>
+        <ol class="how"><li><code>Settings → Taxes and duties</code> → United States → collect sales tax in your home state. Shopify works out the rate per order.</li></ol></div>
+      <div class="task"><label><input type="checkbox" id="t11d"><span>Domain</span></label>
+        <ol class="how"><li><code>Settings → Domains → Buy new domain</code>. It connects itself.</li></ol></div>
+    </div></li>
+
+  <li class="step" data-step="12"><div class="shead"><span class="num">12</span><div><h2>Test, then launch</h2><p>One real test order before you open the doors.</p></div></div>
+    <div class="sbody">
+      <div class="task"><label><input type="checkbox" id="t12a"><span>Place a real test order</span></label>
+        <ol class="how"><li>Buy one shirt yourself with a real card while the store is still behind the password.</li><li>Check it shows up in Printful under <code>Orders</code>, and that the confirmation email looks right.</li><li>That shirt is also your first sample to film in.</li></ol></div>
+      <div class="task"><label><input type="checkbox" id="t12b"><span>Launch day</span></label>
+        <ol class="how"><li><code>Online Store → Preferences</code> → turn off the password.</li><li>Email everyone on the list: "It's live. Your 10% is waiting."</li><li>Post the launch video and change your TikTok bio to the after-launch version.</li></ol></div>
+    </div></li>
+  </ol>
+
+  <p class="foot">Built from Bryson's UpFlip interview (timestamps above) plus standard Shopify setup. I couldn't open his live store, so menus and page layout are my best version, not an exact copy. Ticks are saved in this browser only. <button class="reset" id="reset">Clear all ticks</button></p>
+</div>
+
+<script>
+const KEY="giggleme-shopify-setup";
+const boxes=[...document.querySelectorAll('.task input[type=checkbox]')];
+let saved={};try{saved=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
+function update(){
+  let done=0;
+  boxes.forEach(b=>{b.closest('.task').classList.toggle('checked',b.checked);if(b.checked)done++});
+  document.querySelectorAll('.step').forEach(s=>{const bs=[...s.querySelectorAll('.task input')];s.classList.toggle('complete',bs.length&&bs.every(b=>b.checked))});
+  document.getElementById('count').textContent=done+" of "+boxes.length+" done";
+  const p=Math.round(done/boxes.length*100);
+  document.getElementById('pct').textContent=p+"%";document.getElementById('fill').style.width=p+"%";
+}
+boxes.forEach(b=>{b.checked=!!saved[b.id];b.addEventListener('change',()=>{saved[b.id]=b.checked;try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){}update()})});
+document.getElementById('reset').addEventListener('click',()=>{saved={};try{localStorage.removeItem(KEY)}catch(e){}boxes.forEach(b=>b.checked=false);update()});
+document.querySelectorAll('button.copy').forEach(btn=>btn.addEventListener('click',()=>{
+  const pre=btn.closest('.copyblock').querySelector('pre');
+  const ok=()=>{btn.textContent="Copied";setTimeout(()=>btn.textContent="Copy",1500)};
+  const sel=()=>{const r=document.createRange();r.selectNodeContents(pre);const s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent="Selected";setTimeout(()=>btn.textContent="Copy",1500)};
+  try{navigator.clipboard.writeText(pre.textContent).then(ok,sel)}catch(e){sel()}
+}));
+update();
+</script>
