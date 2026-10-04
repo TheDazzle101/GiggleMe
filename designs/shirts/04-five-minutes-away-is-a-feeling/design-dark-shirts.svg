@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4500 5400">
+      <path d="M 750 3450 C 350 2900, 1500 2750, 1300 3250 S 2200 3950, 2300 3200 S 1600 2400, 2500 2450 S 3800 3100, 3550 2600"
+            fill="none" stroke="#22C3B5" stroke-width="70" stroke-linecap="round" stroke-dasharray="1 150"/>
+      <circle cx="750" cy="3450" r="120" fill="#22C3B5"/>
+      <text x="750" y="3800" text-anchor="middle" font-family="Space Mono" font-weight="700" font-size="170" fill="#CFC7B8">you</text>
+      <g transform="translate(3550 2600)">
+        <path d="M 0 0 C -50 -140, -270 -270, -270 -490 A 270 270 0 1 1 270 -490 C 270 -270, 50 -140, 0 0 Z" fill="#FF4F8B"/>
+        <circle cx="0" cy="-490" r="100" fill="#151515"/>
+      </g>
+      <text x="3550" y="2850" text-anchor="middle" font-family="Space Mono" font-weight="700" font-size="170" fill="#CFC7B8">them</text>
+      <text x="2250" y="700" data-w="3500" text-anchor="middle" font-family="Shrikhand" font-size="400" fill="#F7F1E3">“I'm five</text>
+      <text x="2250" y="1150" data-w="3700" text-anchor="middle" font-family="Shrikhand" font-size="400" fill="#F7F1E3">minutes away”</text>
+      <text x="2250" y="4250" data-w="3900" text-anchor="middle" font-family="Archivo Black" font-size="400" fill="#FFD23F">IS A FEELING,</text>
+      <text x="2250" y="4700" data-w="3900" text-anchor="middle" font-family="Archivo Black" font-size="400" fill="#F7F1E3">NOT A LOCATION.</text>
+      
+  <g opacity="0.9">
+    
+  <g transform="translate(1920 5170)">
+    <circle r="95" fill="#FFD23F"/>
+    <path d="M -47.5 -11.4 q 15.200000000000001 -22.8 30.400000000000002 0" fill="none" stroke="#151515" stroke-width="10.45" stroke-linecap="round"/>
+    <path d="M 17.099999999999998 -11.4 q 15.200000000000001 -22.8 30.400000000000002 0" fill="none" stroke="#151515" stroke-width="10.45" stroke-linecap="round"/>
+    <path d="M -58.9 13.3 Q 0 90.25 58.9 13.3 Z" fill="#151515"/>
+    <path d="M 15.200000000000001 22.8 L 28.5 22.8 L 21.85 49.4 Z" fill="#F7F1E3"/>
+  </g>
+    <text x="2050" y="5222" font-family="Titan One" font-size="150" fill="#F7F1E3">Giggle<tspan fill="#FF4F8B">Me</tspan></text>
+  </g></svg>

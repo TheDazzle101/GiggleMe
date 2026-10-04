@@ -1,0 +1,19 @@
+{
+  "name": "giggleme-designs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "@fontsource/anton": "^5.0.0",
+    "@fontsource/archivo-black": "^5.0.0",
+    "@fontsource/dm-serif-display": "^5.0.0",
+    "@fontsource/shrikhand": "^5.0.0",
+    "@fontsource/space-mono": "^5.0.0",
+    "@fontsource/titan-one": "^5.0.0"
+  },
+  "devDependencies": {
+    "playwright": "^1.56.1"
+  }
+}

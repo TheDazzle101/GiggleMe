@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4500 5400">
+      <g><polygon points="610.0,490.0 697.3,699.9 923.8,718.0 751.2,865.9 804.0,1087.0 610.0,968.5 416.0,1087.0 468.8,865.9 296.2,718.0 522.7,699.9" fill="#FFD23F" stroke="#FFD23F" stroke-width="39.6" stroke-linejoin="round"/><polygon points="1430.0,490.0 1517.3,699.9 1743.8,718.0 1571.2,865.9 1624.0,1087.0 1430.0,968.5 1236.0,1087.0 1288.8,865.9 1116.2,718.0 1342.7,699.9" fill="#FFD23F" stroke="#FFD23F" stroke-width="39.6" stroke-linejoin="round"/><polygon points="2250.0,490.0 2337.3,699.9 2563.8,718.0 2391.2,865.9 2444.0,1087.0 2250.0,968.5 2056.0,1087.0 2108.8,865.9 1936.2,718.0 2162.7,699.9" fill="#FFD23F" stroke="#FFD23F" stroke-width="39.6" stroke-linejoin="round"/><polygon points="3070.0,490.0 3157.3,699.9 3383.8,718.0 3211.2,865.9 3264.0,1087.0 3070.0,968.5 2876.0,1087.0 2928.8,865.9 2756.2,718.0 2982.7,699.9" fill="#FFD23F" stroke="#FFD23F" stroke-width="39.6" stroke-linejoin="round"/><polygon points="3890.0,490.0 3977.3,699.9 4203.8,718.0 4031.2,865.9 4084.0,1087.0 3890.0,968.5 3696.0,1087.0 3748.8,865.9 3576.2,718.0 3802.7,699.9" fill="#FFD23F" stroke="#FFD23F" stroke-width="39.6" stroke-linejoin="round"/></g>
+      <text x="2250" y="1900" data-w="3800" text-anchor="middle" font-family="Archivo Black" font-size="520" fill="#F7F1E3">MY COMFORT ZONE</text>
+      <text x="2250" y="2700" data-w="3600" text-anchor="middle" font-family="DM Serif Display" font-style="italic" font-size="560" fill="#FF4F8B">has five-star reviews.</text>
+      <g transform="translate(550 3080)">
+        <rect width="3400" height="1000" rx="90" fill="none" stroke="#F7F1E3" stroke-width="40" stroke-dasharray="1 0"/>
+        <text x="200" y="400" font-family="Space Mono" font-weight="700" font-size="200" fill="#F7F1E3">“Never leaving.”</text>
+        <text x="200" y="700" font-family="Space Mono" font-size="160" fill="#CFC7B8">— Verified Homebody</text>
+        <g><polygon points="2440.0,535.0 2459.8,582.7 2511.3,586.8 2472.1,620.4 2484.1,670.7 2440.0,643.8 2395.9,670.7 2407.9,620.4 2368.7,586.8 2420.2,582.7" fill="#FFD23F" stroke="#FFD23F" stroke-width="9" stroke-linejoin="round"/><polygon points="2630.0,535.0 2649.8,582.7 2701.3,586.8 2662.1,620.4 2674.1,670.7 2630.0,643.8 2585.9,670.7 2597.9,620.4 2558.7,586.8 2610.2,582.7" fill="#FFD23F" stroke="#FFD23F" stroke-width="9" stroke-linejoin="round"/><polygon points="2820.0,535.0 2839.8,582.7 2891.3,586.8 2852.1,620.4 2864.1,670.7 2820.0,643.8 2775.9,670.7 2787.9,620.4 2748.7,586.8 2800.2,582.7" fill="#FFD23F" stroke="#FFD23F" stroke-width="9" stroke-linejoin="round"/><polygon points="3010.0,535.0 3029.8,582.7 3081.3,586.8 3042.1,620.4 3054.1,670.7 3010.0,643.8 2965.9,670.7 2977.9,620.4 2938.7,586.8 2990.2,582.7" fill="#FFD23F" stroke="#FFD23F" stroke-width="9" stroke-linejoin="round"/><polygon points="3200.0,535.0 3219.8,582.7 3271.3,586.8 3232.1,620.4 3244.1,670.7 3200.0,643.8 3155.9,670.7 3167.9,620.4 3128.7,586.8 3180.2,582.7" fill="#FFD23F" stroke="#FFD23F" stroke-width="9" stroke-linejoin="round"/></g>
+      </g>
+      
+  <g opacity="0.9">
+    
+  <g transform="translate(1920 4560)">
+    <circle r="95" fill="#FFD23F"/>
+    <path d="M -47.5 -11.4 q 15.200000000000001 -22.8 30.400000000000002 0" fill="none" stroke="#151515" stroke-width="10.45" stroke-linecap="round"/>
+    <path d="M 17.099999999999998 -11.4 q 15.200000000000001 -22.8 30.400000000000002 0" fill="none" stroke="#151515" stroke-width="10.45" stroke-linecap="round"/>
+    <path d="M -58.9 13.3 Q 0 90.25 58.9 13.3 Z" fill="#151515"/>
+    <path d="M 15.200000000000001 22.8 L 28.5 22.8 L 21.85 49.4 Z" fill="#F7F1E3"/>
+  </g>
+    <text x="2050" y="4612" font-family="Titan One" font-size="150" fill="#F7F1E3">Giggle<tspan fill="#FF4F8B">Me</tspan></text>
+  </g></svg>

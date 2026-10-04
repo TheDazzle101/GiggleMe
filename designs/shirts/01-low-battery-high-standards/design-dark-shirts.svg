@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4500 5400">
+      <text x="2250" y="980" data-w="3700" text-anchor="middle" font-family="Anton" font-size="700" fill="#F7F1E3">LOW BATTERY.</text>
+      <g transform="translate(500 1300)">
+        <rect x="0" y="0" width="3300" height="1500" rx="220" fill="none" stroke="#F7F1E3" stroke-width="140"/>
+        <rect x="3300" y="470" width="200" height="560" rx="60" fill="#F7F1E3"/>
+        <rect x="190" y="190" width="150" height="1120" rx="50" fill="#FF5A36"/>
+        <text x="1700" y="900" text-anchor="middle" font-family="Space Mono" font-weight="700" font-size="360" fill="#FF5A36">2%</text>
+      </g>
+      <text x="2250" y="3900" data-w="3700" text-anchor="middle" font-family="Anton" font-size="700" fill="#FFD23F">HIGH STANDARDS.</text>
+      
+  <g opacity="0.9">
+    
+  <g transform="translate(1920 4560)">
+    <circle r="95" fill="#FFD23F"/>
+    <path d="M -47.5 -11.4 q 15.200000000000001 -22.8 30.400000000000002 0" fill="none" stroke="#151515" stroke-width="10.45" stroke-linecap="round"/>
+    <path d="M 17.099999999999998 -11.4 q 15.200000000000001 -22.8 30.400000000000002 0" fill="none" stroke="#151515" stroke-width="10.45" stroke-linecap="round"/>
+    <path d="M -58.9 13.3 Q 0 90.25 58.9 13.3 Z" fill="#151515"/>
+    <path d="M 15.200000000000001 22.8 L 28.5 22.8 L 21.85 49.4 Z" fill="#F7F1E3"/>
+  </g>
+    <text x="2050" y="4612" font-family="Titan One" font-size="150" fill="#F7F1E3">Giggle<tspan fill="#FF4F8B">Me</tspan></text>
+  </g></svg>

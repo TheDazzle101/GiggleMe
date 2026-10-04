@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4500 5400">
+      <text x="2250" y="720" data-w="3900" text-anchor="middle" font-family="DM Serif Display" font-size="420" fill="#F7F1E3">If at first you don't succeed,</text>
+      
+        <g transform="translate(620 1050) rotate(-8) scale(0.55)">
+          <path d="M 0 0 L 1050 0 L 1400 350 L 1400 1650 L 0 1650 Z" fill="none" stroke="#F7F1E3" stroke-width="50" stroke-linejoin="round"/>
+          <path d="M 1050 0 L 1050 350 L 1400 350" fill="none" stroke="#F7F1E3" stroke-width="50" stroke-linejoin="round"/>
+          <text x="700" y="1950" text-anchor="middle" font-family="Space Mono" font-weight="700" font-size="230" fill="#CFC7B8">final.png</text>
+        </g>
+      
+        <g transform="translate(1865 1000) rotate(0) scale(0.55)">
+          <path d="M 0 0 L 1050 0 L 1400 350 L 1400 1650 L 0 1650 Z" fill="none" stroke="#F7F1E3" stroke-width="50" stroke-linejoin="round"/>
+          <path d="M 1050 0 L 1050 350 L 1400 350" fill="none" stroke="#F7F1E3" stroke-width="50" stroke-linejoin="round"/>
+          <text x="700" y="1950" text-anchor="middle" font-family="Space Mono" font-weight="700" font-size="230" fill="#CFC7B8">final2.png</text>
+        </g>
+      
+        <g transform="translate(3110 1050) rotate(8) scale(0.55)">
+          <path d="M 0 0 L 1050 0 L 1400 350 L 1400 1650 L 0 1650 Z" fill="none" stroke="#F7F1E3" stroke-width="50" stroke-linejoin="round"/>
+          <path d="M 1050 0 L 1050 350 L 1400 350" fill="none" stroke="#F7F1E3" stroke-width="50" stroke-linejoin="round"/>
+          <text x="700" y="1950" text-anchor="middle" font-family="Space Mono" font-weight="700" font-size="230" fill="#CFC7B8">FINAL_final.png</text>
+        </g>
+      
+        <g transform="translate(1725 2150) rotate(0) scale(0.75)">
+          <path d="M 0 0 L 1050 0 L 1400 350 L 1400 1650 L 0 1650 Z" fill="#FFD23F" stroke="#FFD23F" stroke-width="50" stroke-linejoin="round"/>
+          <path d="M 1050 0 L 1050 350 L 1400 350" fill="none" stroke="#151515" stroke-width="50" stroke-linejoin="round"/>
+          <text x="700" y="1950" text-anchor="middle" font-family="Space Mono" font-weight="700" font-size="250" fill="#F7F1E3">final_final_v2.png</text>
+        </g>
+      <text x="2250" y="4880" data-w="3300" text-anchor="middle" font-family="Anton" font-size="700" fill="#FF4F8B">RENAME IT.</text>
+      
+  <g opacity="0.9">
+    
+  <g transform="translate(1920 5170)">
+    <circle r="95" fill="#FFD23F"/>
+    <path d="M -47.5 -11.4 q 15.200000000000001 -22.8 30.400000000000002 0" fill="none" stroke="#151515" stroke-width="10.45" stroke-linecap="round"/>
+    <path d="M 17.099999999999998 -11.4 q 15.200000000000001 -22.8 30.400000000000002 0" fill="none" stroke="#151515" stroke-width="10.45" stroke-linecap="round"/>
+    <path d="M -58.9 13.3 Q 0 90.25 58.9 13.3 Z" fill="#151515"/>
+    <path d="M 15.200000000000001 22.8 L 28.5 22.8 L 21.85 49.4 Z" fill="#F7F1E3"/>
+  </g>
+    <text x="2050" y="5222" font-family="Titan One" font-size="150" fill="#F7F1E3">Giggle<tspan fill="#FF4F8B">Me</tspan></text>
+  </g></svg>
