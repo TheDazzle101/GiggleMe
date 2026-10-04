@@ -30,7 +30,7 @@ export const SAYINGS = [
 ];
 
 // Tattoo art that fills the letters, tiled in rows across any canvas size. k scales the pieces.
-function artSheet(W, H, k = 1) {
+export function artSheet(W, H, k = 1) {
   const parts = [`<rect width="${W}" height="${H}" fill="${CANDY.blue}"/>`];
   const rowH = 560 * k;
   for (let r = 0, y = 0; y < H + rowH; r++, y += rowH) {
@@ -52,7 +52,7 @@ function artSheet(W, H, k = 1) {
 }
 
 // The browser lays out each line (measured glyph bounds), then builds the inked layers.
-const LAYOUT = `
+export const LAYOUT = `
 // Lays out lines at ONE shared letter size. align "left": every line starts at the same left edge
 // (block centered on the canvas); align "center": each line centered. Returns the block's bottom y.
 function inked(svg, lines, o){
@@ -79,7 +79,7 @@ function inked(svg, lines, o){
   return {bottom:top+blockH, left, size:s};
 }`;
 
-const page = (W, H, art, script) => `<!doctype html><html><head><meta charset="utf-8"><style>
+export const page = (W, H, art, script) => `<!doctype html><html><head><meta charset="utf-8"><style>
 @font-face{font-family:"Rye";src:url(${font("rye", "rye-latin-400-normal.woff2")})}
 @font-face{font-family:"Pinyon Script";src:url(${font("pinyon-script", "pinyon-script-latin-400-normal.woff2")})}
 html,body{margin:0;background:transparent} svg{display:block}</style></head><body>
@@ -101,6 +101,7 @@ html,body{margin:0;background:#ECEAE4}</style></head><body>
   <text x="1800" y="1450" text-anchor="middle" font-family="Rye" font-size="44" fill="#5A4E60">BACK</text>
 </svg><script>document.fonts.ready.then(()=>document.body.dataset.ready=1)</script></body></html>`;
 
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
 const browser = await chromium.launch();
 async function render(html, file, w, h, transparent = true) {
   mkdirSync(dirname(file), { recursive: true });
@@ -138,3 +139,4 @@ for (const s of SAYINGS) {
   console.log("built", s.slug);
 }
 await browser.close();
+}
