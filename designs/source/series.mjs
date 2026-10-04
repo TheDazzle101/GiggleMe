@@ -128,9 +128,9 @@ async function render(html, file, w, h, transparent = true) {
   if (transparent) execFileSync("convert", [file, "-units", "PixelsPerInch", "-density", "300", file]);
 }
 
-// Front left chest: the official GiggleMe wordmark, 4 in wide (1200 px at 300 DPI).
+// Front left chest: the GiggleMe wordmark with a big G and M, 4 in wide (1200 px at 300 DPI).
 const gmFile = join(out, "logo-left-chest.png");
-execFileSync("convert", [resolve(here, "../brand/giggleme-wordmark.png"), "-resize", "1200x", "-units", "PixelsPerInch", "-density", "300", gmFile]);
+execFileSync("node", [join(here, "chest-logo.mjs")]); // first G and M at double height
 
 // Back prints: the stacked saying at Printful's biggest back size, 4500 × 5400 (15 × 18 in).
 // One letter size, every line starts at the same left edge, block centered top to bottom.

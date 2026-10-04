@@ -27,7 +27,10 @@ const art = () => `
 
 const WORD = `<text x="1300" y="900" text-anchor="middle" font-family="Rye" font-size="380">GIGGLEME</text>`;
 
-export function wordmark(id = "gm") {
+export function wordmark(id = "gm") { return wordmarkFrom(WORD, id); }
+
+// Any <text> drawn in the GiggleMe inked style (same layers as the logo).
+export function wordmarkFrom(WORD, id = "gm") {
   return `
   <defs><clipPath id="${id}">${WORD}</clipPath></defs>
   <g transform="translate(22 22)" fill="${CANDY.lavender}">${WORD}</g>

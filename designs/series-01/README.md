@@ -10,7 +10,7 @@ Ten tees: the **GiggleMe logo** on the front left chest, and a stacked saying ac
 
 | File | Where it prints | Size |
 |---|---|---|
-| `logo-left-chest.png` | **Front, left chest** (same file on every shirt): the GiggleMe wordmark | 1200 × 213 px · 4 in wide · 300 DPI |
+| `logo-left-chest.png` | **Front, left chest** (same file on every shirt): the GiggleMe wordmark with the first G and the M at double height | 1200 × 267 px · 4 in wide · 300 DPI |
 | `<design>/back-print.png` | **Back**, oversize | 4500 × 5400 px · 15 × 18 in · 300 DPI |
 | `<design>/mockup.png` | Preview only | |
 
