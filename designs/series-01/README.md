@@ -4,7 +4,7 @@
 
 ![Front and back](../previews/series-01-front-back.jpg)
 
-Ten tees: a matte-gold script **GM** on the front left chest, and a stacked saying in the GiggleMe tattoo-ink style across the back at Printful's biggest back size. Every letter on a back is the same size, every line starts at the same left edge, and the block is centered top to bottom.
+Ten tees: a matte-gold script **GM** on the front left chest, and a stacked saying across the back at Printful's biggest back size. The back letters are filled with GiggleMe tattoo art in a darker gunmetal palette (gunmetal grey, dusty rose, smoky lavender, sage, muted brass) and boldly outlined in the same matte gold as the GM. Every letter on a back is the same size, every line starts at the same left edge, and the block is centered top to bottom.
 
 ## Files
 
@@ -14,7 +14,7 @@ Ten tees: a matte-gold script **GM** on the front left chest, and a stacked sayi
 | `<design>/back-print.png` | **Back**, oversize | 4500 × 5400 px · 15 × 18 in · 300 DPI |
 | `<design>/mockup.png` | Preview only | |
 
-The back letters carry their own black outline and colors, so they work on any shirt color. The gold GM shows best on **black, navy and charcoal**; on white or cream it reads softer.
+This gunmetal-and-gold look is made for **black, charcoal and navy** shirts. On white or cream the gold outline reads softer.
 
 ## Set it up in Printful
 

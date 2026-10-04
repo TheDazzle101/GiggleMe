@@ -10,7 +10,14 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { CANDY } from "./brandmark.mjs"; // also switches the tattoo ink to cotton candy
-import { rose, nauticalStar, flames, bolt } from "./tattoo.mjs";
+import { INK, rose, nauticalStar, flames, bolt } from "./tattoo.mjs";
+
+// Series 01 ink: the cotton-candy tattoo theme, darkened into gunmetal greys with dusty tints.
+export const GUN = {
+  base: "#555D68", baseDeep: "#3A4049", haze: "#6A6478", rose: "#9A6A7C", roseDeep: "#6A4656",
+  sage: "#5F7A71", sageDeep: "#3E544D", brass: "#9C8C68", shadow: "#2A2E35", gold: CANDY.gold,
+};
+Object.assign(INK, { red: GUN.rose, redDark: GUN.roseDeep, green: GUN.sage, greenDark: GUN.sageDeep, yellow: GUN.brass, teal: GUN.base, tealDark: GUN.baseDeep });
 
 const here = dirname(fileURLToPath(import.meta.url));
 const out = resolve(here, "../series-01");
@@ -31,21 +38,21 @@ export const SAYINGS = [
 
 // Tattoo art that fills the letters, tiled in rows across any canvas size. k scales the pieces.
 export function artSheet(W, H, k = 1) {
-  const parts = [`<rect width="${W}" height="${H}" fill="${CANDY.blue}"/>`];
+  const parts = [`<rect width="${W}" height="${H}" fill="${GUN.base}"/>`];
   const rowH = 560 * k;
   for (let r = 0, y = 0; y < H + rowH; r++, y += rowH) {
     const kind = r % 3, off = (r % 2) * 220 * k;
     if (kind === 0) {
-      for (let x = -off; x < W + 300 * k; x += 330 * k) parts.push(`<path d="M ${x} ${y + 120 * k} q ${80 * k} ${-60 * k} ${165 * k} 0 t ${165 * k} 0" fill="none" stroke="${CANDY.blueDeep}" stroke-width="${16 * k}"/>`);
+      for (let x = -off; x < W + 300 * k; x += 330 * k) parts.push(`<path d="M ${x} ${y + 120 * k} q ${80 * k} ${-60 * k} ${165 * k} 0 t ${165 * k} 0" fill="none" stroke="${GUN.baseDeep}" stroke-width="${16 * k}"/>`);
       for (let x = 160 * k - off; x < W + 200 * k; x += 520 * k) parts.push(rose(x, y + 330 * k, 125 * k, [140, 30]));
-      for (let x = 420 * k - off; x < W + 200 * k; x += 520 * k) parts.push(nauticalStar(x, y + 200 * k, 70 * k, CANDY.lavender, (x / k) % 40));
+      for (let x = 420 * k - off; x < W + 200 * k; x += 520 * k) parts.push(nauticalStar(x, y + 200 * k, 70 * k, GUN.haze, (x / k) % 40));
     } else if (kind === 1) {
-      parts.push(`<rect y="${y}" width="${W}" height="${rowH}" fill="${CANDY.lavender}" opacity=".55"/>`);
+      parts.push(`<rect y="${y}" width="${W}" height="${rowH}" fill="${GUN.haze}" opacity=".55"/>`);
       parts.push(`<g transform="translate(0 ${y + rowH}) scale(${k})">${flames(-200, W / k + 200, 0, 420)}</g>`);
     } else {
       for (let x = 260 * k - off; x < W + 200 * k; x += 600 * k) parts.push(rose(x, y + 300 * k, 115 * k, [200, -20]));
       for (let x = 0 - off; x < W + 200 * k; x += 600 * k) parts.push(bolt(x, y + 280 * k, 95 * k, 15));
-      for (let x = 520 * k - off; x < W + 200 * k; x += 600 * k) parts.push(nauticalStar(x, y + 160 * k, 60 * k, CANDY.pink, 12));
+      for (let x = 520 * k - off; x < W + 200 * k; x += 600 * k) parts.push(nauticalStar(x, y + 160 * k, 60 * k, GUN.rose, 12));
     }
   }
   return parts.join("");
@@ -74,8 +81,12 @@ function inked(svg, lines, o){
   svg.insertBefore(layer({fill:o.shadow},sh,sh),art);
   svg.insertBefore(layer({fill:"none",stroke:"#121212","stroke-linejoin":"round"},sh,sh,0.026),art);
   art.setAttribute("clip-path","url(#"+o.id+")");
-  svg.appendChild(layer({fill:"none",stroke:"#121212","stroke-linejoin":"round"},0,0,0.026));
-  svg.appendChild(layer({fill:"none",stroke:"#FFFFFF","stroke-linejoin":"round",opacity:".6"},-sh*0.18,-sh*0.18,0.011));
+  if(o.outline){
+    // Bold outline sits BEHIND the filled letters, so only its outer half shows; a fine dark edge keeps it crisp.
+    svg.insertBefore(layer({fill:"none",stroke:o.outline,"stroke-linejoin":"round"},0,0,o.outlineK),art);
+    svg.appendChild(layer({fill:"none",stroke:"#121212","stroke-linejoin":"round"},0,0,0.01));
+  } else svg.appendChild(layer({fill:"none",stroke:"#121212","stroke-linejoin":"round"},0,0,0.026));
+  if(!o.outline)svg.appendChild(layer({fill:"none",stroke:"#FFFFFF","stroke-linejoin":"round",opacity:".6"},-sh*0.18,-sh*0.18,0.011));
   return {bottom:top+blockH, left, size:s};
 }`;
 
@@ -137,7 +148,7 @@ await render(page(1200, 1200, "", `
 for (const s of SAYINGS) {
   const dir = join(out, s.slug), back = join(dir, "back-print.png");
   await render(page(4500, 5400, artSheet(4500, 5400, 2.3), `
-    inked(document.getElementById("s"),${JSON.stringify(s.lines)},{id:"c",cx:2250,cy:2700,width:4380,height:5000,align:"left",shadow:"${CANDY.lavender}"});`),
+    inked(document.getElementById("s"),${JSON.stringify(s.lines)},{id:"c",cx:2250,cy:2700,width:4380,height:5000,align:"left",shadow:"${GUN.shadow}",outline:"${GUN.gold}",outlineK:0.075});`),
     back, 4500, 5400);
   await render(mockHTML("#1C1C1E", pathToFileURL(gmFile).href, pathToFileURL(back).href), join(dir, "mockup.png"), 2400, 1500, false);
   console.log("built", s.slug);
