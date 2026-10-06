@@ -12,6 +12,20 @@ Same look as the proven turkey face top seller: brown tee, one big flat cartoon 
 | 4 | Suspicious Turkey | Side-eye under one raised brow | Reads as "I saw you sharpen that knife." |
 | 5 | Winking Turkey | One cheeky wink | The friendliest version, good for kids, families and matching group shirts. |
 
+## Set B: closer to the original, plainly a Thanksgiving turkey
+
+![Set B on the brown tee](classic-03-concepts-b.jpg)
+
+Same face as the original (eyes looking in, same beak and snood). These add one thing that says "turkey" or "Thanksgiving" at a glance. The pixel shades are the "deal with it" meme look with no words printed.
+
+| # | Design | What's added | Why it should sell |
+|---|---|---|---|
+| 6 | Classic Gobbler | Red, orange and gold tail fan | The original face, but nobody can mistake it for anything but a Thanksgiving turkey. |
+| 7 | Cool Turkey | Pixel shades | A meme everyone knows, on the original face. |
+| 8 | **Cool Gobbler** (recommended) | Pixel shades and the tail fan | The meme laugh plus an instant "that's a turkey" from across the room. |
+| 9 | Deal With It Turkey | Shades sliding down, eyes peeking over, tail fan | A bit more attitude. |
+| 10 | Pilgrim Turkey | Black pilgrim hat with gold buckle | Says Thanksgiving before anyone reads a thing. |
+
 ## Upload to Printful
 
 Everything to upload is in **`printful-upload/`**, one file per design and shirt color:

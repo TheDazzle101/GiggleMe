@@ -25,6 +25,30 @@ const pupil = (x, y, r = 235) =>
 const lid = (e, cut, tilt = 0) =>
   `<path d="M ${e.x - R - 20} ${e.y - R - 20} L ${e.x + R + 20} ${e.y - R - 20} L ${e.x + R + 20} ${e.y + cut + tilt} Q ${e.x} ${e.y + cut + 90} ${e.x - R - 20} ${e.y + cut - tilt} Z" fill="${C.ink}"/>`;
 
+// Set B helpers: the classic cartoon turkey tail fan, pixel "deal with it" shades and a pilgrim hat.
+const FEATHERS = ["#C8372D", "#F08A24", "#F2C14E", "#C8372D", "#F2C14E", "#F08A24", "#C8372D"];
+const fan = (v) => {
+  const edge = v === "light" ? `stroke="${C.ink}" stroke-width="24"` : "";
+  return [-84, -56, -28, 0, 28, 56, 84].map((a, i) => {
+    const c = FEATHERS[i], inner = c === "#F2C14E" ? "#F08A24" : "#F2C14E";
+    return `<g transform="rotate(${a} 1800 1300)">
+      <ellipse cx="1800" cy="${1300 - 800}" rx="330" ry="800" fill="${c}" ${edge}/>
+      <ellipse cx="1800" cy="${1300 - 1000}" rx="200" ry="560" fill="${inner}"/>
+      <ellipse cx="1800" cy="${1300 - 1150}" rx="85" ry="330" fill="#7A3B1A"/></g>`;
+  }).join("");
+};
+// Pixel shades, 24 cells wide. "#" is black, "w" is a white glint pixel.
+const SHADES = ["########################", "##ww#########ww#########",
+  ".##ww######..##ww######.", "..##ww####....##ww####..", "...######......######..."];
+const shades = (x0 = 540, y0 = 860, rot = 0, cw = 105, ch = 150) =>
+  `<g transform="rotate(${rot} 1800 ${y0 + 250})">${SHADES.flatMap((row, r) => [...row].map((p, c) =>
+    p === "." ? "" : `<rect x="${x0 + c * cw - 1}" y="${y0 + r * ch - 1}" width="${cw + 2}" height="${ch + 2}" fill="${p === "w" ? C.white : C.ink}"/>`)).join("")}</g>`;
+const PILGRIM = `<path d="M 1200 640 L 1330 -260 L 2270 -260 L 2400 640 Z" fill="${C.ink}"/>
+  <rect x="1240" y="380" width="1120" height="190" fill="#6B4A2E"/>
+  <rect x="1640" y="330" width="320" height="290" rx="24" fill="none" stroke="#F2C14E" stroke-width="60"/>
+  <ellipse cx="1800" cy="660" rx="1050" ry="150" fill="${C.ink}"/>`;
+const classicEyes = [(e) => pupil(e.x + 110, e.y + 70), (e) => pupil(e.x - 110, e.y + 70)];
+
 // Each twist only changes what sits inside the eyes, plus at most one small extra on the face.
 export const DESIGNS = [
   { slug: "01-nervous-turkey", name: "Nervous Turkey",
@@ -49,6 +73,22 @@ export const DESIGNS = [
     why: "One cheeky wink. The friendliest version, good for kids, families and matching group shirts.",
     eyes: [(e) => `<path d="M ${e.x - 330} ${e.y + 40} Q ${e.x} ${e.y - 230} ${e.x + 330} ${e.y + 40}" fill="none" stroke="${C.ink}" stroke-width="120" stroke-linecap="round"/>`,
       (e) => pupil(e.x - 110, e.y + 70)] },
+  // Set B (Dazzle, 2026-10-06): closer to the original, plainly a Thanksgiving turkey, some in pixel shades.
+  { slug: "06-classic-gobbler", name: "Classic Gobbler", set: "b", k: 0.98, top: -560,
+    why: "The original face with a big red, orange and gold tail fan behind it. Nobody can mistake it for anything but a Thanksgiving turkey.",
+    eyes: classicEyes, back: fan },
+  { slug: "07-cool-turkey", name: "Cool Turkey", set: "b",
+    why: "The original face in pixel 'deal with it' shades. A meme everyone knows, no words needed.",
+    eyes: classicEyes, extra: () => shades() },
+  { slug: "08-cool-gobbler", name: "Cool Gobbler", set: "b", k: 0.98, top: -560,
+    why: "Pixel shades plus the tail fan: the meme laugh and an instant 'that's a turkey' from across the room.",
+    eyes: classicEyes, back: fan, extra: () => shades() },
+  { slug: "09-deal-with-it-turkey", name: "Deal With It Turkey", set: "b", k: 0.98, top: -560,
+    why: "The shades slide down his beak and his eyes peek over the top. Same fan, a bit more attitude.",
+    eyes: [(e) => pupil(e.x + 60, e.y - 120, 220), (e) => pupil(e.x - 60, e.y - 120, 220)], back: fan, extra: () => shades(540, 1240, -5) },
+  { slug: "10-pilgrim-turkey", name: "Pilgrim Turkey", set: "b", k: 1.15, top: -330,
+    why: "The original face under a black pilgrim hat with a gold buckle. Says Thanksgiving before anyone reads a thing.",
+    eyes: classicEyes, extra: () => PILGRIM },
 ];
 
 // Print canvas: 12 × 16 in at 300 DPI, same as the other series.
@@ -70,11 +110,12 @@ const face = (d, v) => {
   const beak = `
     <path d="M 1000 2010 Q 1420 1760 1810 1760 Q 2220 1760 2640 1980 Q 2330 2060 2110 2130 L 1870 2660 Q 1820 2730 1775 2660 L 1550 2160 Q 1290 2070 1000 2010 Z" fill="${C.beak}" ${edge}/>
     <path d="M 1990 1900 Q 2010 2050 1955 2330 Q 1935 2120 1945 1900 Z" fill="${C.white}"/>`;
-  return `<g id="block">${eyes}${snood}${beak}${d.extra || ""}</g>`;
+  const x = (f) => (typeof f === "function" ? f(v) : f || "");
+  return `<g id="block">${x(d.back)}${eyes}${snood}${beak}${x(d.extra)}</g>`;
 };
-// One fixed scale for every twist so the face is the same size on all five (extras like brows don't shrink it).
-const K = 1.25;
-const place = (body) => `<g transform="translate(${PW / 2 - 1800 * K} ${TOP - 100 * K}) scale(${K})">${body}</g>`;
+// A fixed scale per design (not fit-to-bounds) so brows or a sweat drop don't shrink the face. Designs with the
+// tail fan or hat use a smaller scale or a higher top (`top` = the source y that lands at the top of the print).
+const place = (body, { k = 1.25, top = 100 } = {}) => `<g transform="translate(${PW / 2 - 1800 * k} ${TOP - top * k}) scale(${k})">${body}</g>`;
 
 const html = (body, w, h, bg, script = "") => `<!doctype html><html><head><meta charset="utf-8"><style>${FONTS} html,body{margin:0;background:${bg}} svg{display:block}</style></head><body>
 <svg id="art" xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">${body}</svg>
@@ -120,7 +161,7 @@ async function render(page, file, w, h, { transparent = false, dpi = false, svgO
 for (const d of DESIGNS) {
   const dir = join(out, d.slug);
   for (const v of ["dark", "light"]) {
-    await render(html(place(face(d, v)), PW, PH, "transparent"), join(dir, `print-${v}-shirts.png`), PW, PH,
+    await render(html(place(face(d, v), d), PW, PH, "transparent"), join(dir, `print-${v}-shirts.png`), PW, PH,
       { transparent: true, dpi: true, svgOut: join(dir, `design-${v}-shirts.svg`) });
   }
   for (const [name, s] of Object.entries(SHIRTS)) {
@@ -128,12 +169,15 @@ for (const d of DESIGNS) {
   }
 }
 
-// Contact sheet: all five on the brown tee, like the original.
+// Contact sheets on the brown tee, like the original: set A (1–5) and set B (6–10).
 const cw = 900, ch = 1120;
-const cells = DESIGNS.map((d, i) => `
+for (const [set, file] of [[undefined, "classic-03-concepts.jpg"], ["b", "classic-03-concepts-b.jpg"]]) {
+  const row = DESIGNS.filter((d) => d.set === set);
+  const cells = row.map((d, i) => `
   ${tee(join(out, d.slug, "print-dark-shirts.png"), SHIRTS.brown, i * cw + 30, 30, 0.7)}
-  <text x="${i * cw + cw / 2}" y="1070" text-anchor="middle" font-family="Barlow Condensed" font-weight="800" font-size="44" fill="#222">${i + 1}. ${d.name}</text>`).join("");
-await render(html(HEATHER + cells, cw * DESIGNS.length, ch, "#ECEAE4"), join(out, "classic-03-concepts.jpg"), cw * DESIGNS.length, ch);
+  <text x="${i * cw + cw / 2}" y="1070" text-anchor="middle" font-family="Barlow Condensed" font-weight="800" font-size="44" fill="#222">${parseInt(d.slug)}. ${d.name}</text>`).join("");
+  await render(html(HEATHER + cells, cw * row.length, ch, "#ECEAE4"), join(out, file), cw * row.length, ch);
+}
 
 await browser.close();
 console.log("Built", DESIGNS.length, "classic-03 designs →", out);
