@@ -1,0 +1,38 @@
+<svg id="art" xmlns="http://www.w3.org/2000/svg" width="3600" height="4800" viewBox="0 0 3600 4800"><defs>
+  <filter id="distress" filterUnits="userSpaceOnUse" x="0" y="0" width="3600" height="4800">
+  <feTurbulence type="fractalNoise" baseFrequency="0.011" numOctaves="4" seed="7" result="big"></feTurbulence>
+  <feColorMatrix in="big" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  10 0 0 0 -6.8" result="blotches"></feColorMatrix>
+  <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="5" result="fine"></feTurbulence>
+  <feColorMatrix in="fine" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  11 0 0 0 -7.6" result="specks"></feColorMatrix>
+  <feMerge result="holes"><feMergeNode in="blotches"></feMergeNode><feMergeNode in="specks"></feMergeNode></feMerge>
+  <feComposite in="SourceGraphic" in2="holes" operator="out"></feComposite>
+</filter>
+  <mask id="knock" maskUnits="userSpaceOnUse" x="0" y="0" width="3600" height="4800">
+    <circle cx="1800" cy="2380" r="1000" fill="#fff"></circle>
+    <g fill="#000" stroke="#000"><g transform="translate(1800 3000) scale(1.24) translate(-1800 -3000)">
+  <circle cx="1806" cy="2306" r="86"></circle>
+  <path d="M 1700 2262 L 1912 2262" stroke-width="30" stroke-linecap="round"></path>
+  <path d="M 1804 2392 L 1792 2636" stroke-width="104" stroke-linecap="round"></path>
+  <path d="M 1792 2636 L 1726 2846 M 1792 2636 L 1874 2842" stroke-width="62" stroke-linecap="round"></path>
+  <path d="M 1808 2436 L 1736 2524 M 1812 2424 L 1906 2386" stroke-width="54" stroke-linecap="round"></path>
+  <path d="M 1398 2846 L 2238 2846 Q 2170 2994 1800 2998 Q 1466 2994 1398 2846 Z"></path>
+  <path d="M 1452 3042 Q 1640 3094 1836 3042 M 1932 3058 Q 2080 3100 2224 3058 M 1402 3146 Q 1596 3194 1788 3146 M 1880 3160 Q 2026 3200 2160 3160" fill="none" stroke-width="26" stroke-linecap="round"></path></g>
+      <path d="M 1742 2524 L 1150 1840" fill="none" stroke-width="46" stroke-linecap="round"></path>
+      <path d="M 1150 1840 C 1500 1080 2600 1150 2900 2100 C 2962 2292 2966 2424 2950 2560M 2950 2560 L 2938 2700" fill="none" stroke-width="28"></path></g>
+  </mask>
+  <mask id="outside" maskUnits="userSpaceOnUse" x="0" y="0" width="3600" height="4800">
+    <rect width="3600" height="4800" fill="#fff"></rect><circle cx="1800" cy="2380" r="1000" fill="#000"></circle>
+  </mask>
+  <path id="arc" d="M 340 2380 A 1460 1460 0 0 1 3260 2380"></path>
+</defs>
+<g filter="url(#distress)" fill="#E9A63E">
+  <circle cx="1800" cy="2380" r="1000" mask="url(#knock)"></circle>
+  <g mask="url(#outside)" fill="none" stroke="#E9A63E" stroke-linecap="round">
+    <path d="M 1742 2524 L 1150 1840" stroke-width="46"></path><path d="M 1150 1840 C 1500 1080 2600 1150 2900 2100 C 2962 2292 2966 2424 2950 2560M 2950 2560 L 2938 2700" stroke-width="28"></path>
+  </g>
+  <text id="top" font-family="Barlow Condensed" font-weight="700" font-size="360">
+    <textPath href="#arc" startOffset="50%" text-anchor="middle" textLength="2078.00625">CALLING IN SICK</textPath></text>
+  <g id="punch" font-family="Yellowtail" font-size="300" text-anchor="middle" transform="translate(1800 3939.6) scale(1.3)">
+    <text x="0" y="0">I pulled</text><text x="0" y="330">A mussel</text>
+  </g>
+</g></svg>
