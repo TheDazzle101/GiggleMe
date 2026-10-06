@@ -1,0 +1,11 @@
+<svg id="art" xmlns="http://www.w3.org/2000/svg" width="3600" height="4800" viewBox="0 0 3600 4800"><defs><filter id="distress" filterUnits="userSpaceOnUse" x="0" y="0" width="3600" height="4800">
+  <feTurbulence type="fractalNoise" baseFrequency="0.022" numOctaves="4" seed="11" result="big"></feTurbulence>
+  <feColorMatrix in="big" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  13 0 0 0 -8.1" result="blotches"></feColorMatrix>
+  <feTurbulence type="fractalNoise" baseFrequency="0.16" numOctaves="2" seed="3" result="fine"></feTurbulence>
+  <feColorMatrix in="fine" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  16 0 0 0 -10.2" result="specks"></feColorMatrix>
+  <feMerge result="holes"><feMergeNode in="blotches"></feMergeNode><feMergeNode in="specks"></feMergeNode></feMerge>
+  <feComposite in="SourceGraphic" in2="holes" operator="out"></feComposite>
+</filter></defs>
+  <g filter="url(#distress)"><g id="block" font-family="Barlow Condensed" font-weight="700" font-size="200" text-anchor="middle" fill="#151515" letter-spacing="3" transform="translate(1800 913.59477124183) scale(3.2679738562091503)">
+    <text x="0" y="0">MY BICEPS</text><text x="0" y="226">ATE THE</text><text x="0" y="452">SLEEVES</text><text x="0" y="678">AGAIN</text>
+  </g></g></svg>
