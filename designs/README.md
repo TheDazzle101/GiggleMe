@@ -16,6 +16,7 @@
 | `shirts/<design>/print-light-shirts.png` | Print file for **white, cream and light heather** shirts. |
 | `shirts/<design>/mockup-*.png` | Quick previews. Use Printful's mockups for the store photos. |
 | `shirts/<design>/design-*.svg` | Editable vector versions of each design. |
+| `social/LAUNCH-KIT.md` | Profile pictures, banners, bios and the first week of posts for TikTok, Instagram and YouTube. Images are in `brand/social/`. |
 | `source/` | The code that draws everything. Shirts: change `designs.mjs`, then `npm install` and `npm run build`. Logo: `node logo-final.mjs`. |
 
 Every print file is **3600 × 4800 px at 300 DPI** (12 × 16 in, the standard Printful tee front area), with a transparent background. All fonts are open-license (SIL OFL), so they're safe to use on products you sell.
