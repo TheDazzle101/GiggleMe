@@ -1,0 +1,16 @@
+<svg id="art" xmlns="http://www.w3.org/2000/svg" width="3600" height="4800" viewBox="0 0 3600 4800"><g transform="translate(-450 25) scale(1.25)"><g id="block">
+    <circle cx="1270" cy="1170" r="640" fill="#141414"></circle>
+    <clipPath id="eye0"><circle cx="1310" cy="1130" r="590"></circle></clipPath>
+    <circle cx="1310" cy="1130" r="590" fill="#FFFFFF"></circle>
+    <g clip-path="url(#eye0)"><circle cx="1590" cy="1170" r="220" fill="#141414"></circle><circle cx="1510.8" cy="1077.6" r="66" fill="#FFFFFF"></circle><path d="M 700 520 L 1920 520 L 1920 900 Q 1310 1050 700 1020 Z" fill="#141414"></path></g>
+    <circle cx="2330" cy="1130" r="640" fill="#141414"></circle>
+    <clipPath id="eye1"><circle cx="2290" cy="1090" r="590"></circle></clipPath>
+    <circle cx="2290" cy="1090" r="590" fill="#FFFFFF"></circle>
+    <g clip-path="url(#eye1)"><circle cx="2570" cy="1130" r="220" fill="#141414"></circle><circle cx="2490.8" cy="1037.6" r="66" fill="#FFFFFF"></circle><path d="M 1680 480 L 2900 480 L 2900 800 Q 2290 850 1680 720 Z" fill="#141414"></path></g>
+    <path d="M 1600 2100 C 1420 2320 1350 2750 1380 3180" fill="none" stroke="none" stroke-width="300" stroke-linecap="round"></path>
+    <path d="M 1600 2100 C 1420 2320 1350 2750 1380 3180" fill="none" stroke="#E2302E" stroke-width="260" stroke-linecap="round"></path>
+    <path d="M 1820 2350 C 1860 2650 1890 2900 1860 3100" fill="none" stroke="none" stroke-width="280" stroke-linecap="round"></path>
+    <path d="M 1820 2350 C 1860 2650 1890 2900 1860 3100" fill="none" stroke="#F2602A" stroke-width="240" stroke-linecap="round"></path>
+    <path d="M 1000 2010 Q 1420 1760 1810 1760 Q 2220 1760 2640 1980 Q 2330 2060 2110 2130 L 1870 2660 Q 1820 2730 1775 2660 L 1550 2160 Q 1290 2070 1000 2010 Z" fill="#FF7B2E"></path>
+    <path d="M 1990 1900 Q 2010 2050 1955 2330 Q 1935 2120 1945 1900 Z" fill="#FFFFFF"></path><path d="M 840 380 Q 1300 430 1740 600" fill="none" stroke="#141414" stroke-width="120" stroke-linecap="round"></path>
+      <path d="M 1880 360 Q 2300 180 2760 300" fill="none" stroke="#141414" stroke-width="120" stroke-linecap="round"></path></g></g></svg>

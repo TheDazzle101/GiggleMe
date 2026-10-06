@@ -19,7 +19,7 @@ Object.assign(INK, {
 });
 
 const SMALL = 300, BIG = SMALL * 2;
-const WORD = `<text x="1300" y="820" text-anchor="middle" font-family="Yellowtail"><tspan font-size="${BIG}">G</tspan><tspan font-size="${SMALL}">iggle</tspan><tspan font-size="${BIG}">M</tspan><tspan font-size="${SMALL}">e</tspan></text>`;
+export const WORD = `<text x="1300" y="820" text-anchor="middle" font-family="Yellowtail"><tspan font-size="${BIG}">G</tspan><tspan font-size="${SMALL}">iggle</tspan><tspan font-size="${BIG}">M</tspan><tspan font-size="${SMALL}">e</tspan></text>`;
 
 // Measured bounds of the inked logo in the 2600 × 1250 space (x, y, width, height).
 export const LOGO_BOX = { x: 591, y: 355, w: 1494, h: 650 };
