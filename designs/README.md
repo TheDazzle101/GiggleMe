@@ -16,6 +16,8 @@
 | `shirts/<design>/print-light-shirts.png` | Print file for **white, cream and light heather** shirts. |
 | `shirts/<design>/mockup-*.png` | Quick previews. Use Printful's mockups for the store photos. |
 | `shirts/<design>/design-*.svg` | Editable vector versions of each design. |
+| `classic-01/` | Five tees in the exact style of the "paused my game" top seller, with GiggleMe phrases. See its README. |
+| `gamer-01/` | Five gamer tees based on the "paused my game" top seller, with print files and mockups. See its README. |
 | `social/LAUNCH-KIT.md` | Profile pictures, banners, bios and the first week of posts for TikTok, Instagram and YouTube. Images are in `brand/social/`. |
 | `source/` | The code that draws everything. Shirts: change `designs.mjs`, then `npm install` and `npm run build`. Logo: `node logo-final.mjs`. |
 
