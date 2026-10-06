@@ -1,6 +1,6 @@
 # Classic 05: the "favorite people" family tee, with GiggleMe lines
 
-Recommended pick: 1, My best title is still Papa.
+**Final set for Top 20 slot 5 (Dazzle, 2026-10-06): all five designs below.** Recommended pick: 1, My best title is still Papa.
 
 ![All five on the heather black tee](classic-05-concepts.jpg)
 
