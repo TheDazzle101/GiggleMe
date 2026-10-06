@@ -1,5 +1,7 @@
 # Classic 03: the turkey face tee, with a GiggleMe twist
 
+**Chosen for Top 20 slot 3 (Dazzle, 2026-10-06): Set B, designs 6 to 10. Favorites: 7 Cool Turkey and 10 Pilgrim Turkey.** Set A (1 to 5) stays here as extra options.
+
 ![All five on the brown tee](classic-03-concepts.jpg)
 
 Same look as the proven turkey face top seller: brown tee, one big flat cartoon face filling the chest, white googly eyes with a dark rim, orange beak with a white shine, red and orange snood, no text. The twist is the face itself: each version changes the eyes and adds at most one small detail. The front has no logo: GiggleMe goes on the inside back neck label.
@@ -12,7 +14,7 @@ Same look as the proven turkey face top seller: brown tee, one big flat cartoon 
 | 4 | Suspicious Turkey | Side-eye under one raised brow | Reads as "I saw you sharpen that knife." |
 | 5 | Winking Turkey | One cheeky wink | The friendliest version, good for kids, families and matching group shirts. |
 
-## Set B: closer to the original, plainly a Thanksgiving turkey
+## Set B (chosen): closer to the original, plainly a Thanksgiving turkey
 
 ![Set B on the brown tee](classic-03-concepts-b.jpg)
 
@@ -21,10 +23,10 @@ Same face as the original (eyes looking in, same beak and snood). These add one 
 | # | Design | What's added | Why it should sell |
 |---|---|---|---|
 | 6 | Classic Gobbler | Red, orange and gold tail fan | The original face, but nobody can mistake it for anything but a Thanksgiving turkey. |
-| 7 | Cool Turkey | Pixel shades | A meme everyone knows, on the original face. |
-| 8 | **Cool Gobbler** (recommended) | Pixel shades and the tail fan | The meme laugh plus an instant "that's a turkey" from across the room. |
+| 7 | **Cool Turkey** (favorite) | Pixel shades | A meme everyone knows, on the original face. |
+| 8 | Cool Gobbler | Pixel shades and the tail fan | The meme laugh plus an instant "that's a turkey" from across the room. |
 | 9 | Deal With It Turkey | Shades sliding down, eyes peeking over, tail fan | A bit more attitude. |
-| 10 | Pilgrim Turkey | Black pilgrim hat with gold buckle | Says Thanksgiving before anyone reads a thing. |
+| 10 | **Pilgrim Turkey** (favorite) | Black pilgrim hat with gold buckle | Says Thanksgiving before anyone reads a thing. |
 
 ## Upload to Printful
 
