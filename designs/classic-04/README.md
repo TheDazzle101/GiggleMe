@@ -1,5 +1,7 @@
 # Classic 04: the fishing-excuse hoodie, with GiggleMe puns
 
+**Final set for Top 20 slot 4 (Dazzle, 2026-10-06): all five dock-scene designs below.** Recommended pick: 3, It's a reel emergency.
+
 ![All five on the navy hoodie](classic-04-concepts.jpg)
 
 Same look as the proven seller: navy pullover hoodie, worn gold print, arched caps on top, a big sun circle with an angler fishing from the end of a dock over a wide lake, and a script punchline underneath. Only the joke changes: five original fishing puns (the original's phrase is not used). No logo on the front; GiggleMe goes on the inside back neck label.

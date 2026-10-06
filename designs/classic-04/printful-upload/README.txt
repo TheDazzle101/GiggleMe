@@ -1,3 +1,4 @@
+FINAL: Classic 04 (Top 20 slot 4), all five designs approved 2026-10-06.
 Upload these to Printful.
 FRONT-dark-shirts: white text, for royal blue, black, navy, charcoal. FRONT-light-shirts: black text, for white, sand, light heather.
 Each front file is trimmed to the art at 300 DPI. Center it at the top of the front print area.
