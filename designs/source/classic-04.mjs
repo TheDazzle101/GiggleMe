@@ -1,5 +1,5 @@
 // Classic 04: the proven fishing-excuse hoodie look (distressed gold print on a navy pullover: arched
-// condensed caps, a big sun circle with an angler casting from a small boat knocked out of it, and a
+// condensed caps, a big sun circle with an angler fishing from the end of a dock knocked out of it, and a
 // script punchline underneath) with original GiggleMe fishing puns. The brand goes on the inside neck
 // label (printful-pack.mjs).
 // Run: npm install && node classic-04.mjs → ../classic-04/<design>/ and ../classic-04/classic-04-concepts.jpg
@@ -53,32 +53,50 @@ const DISTRESS = `<filter id="distress" filterUnits="userSpaceOnUse" x="0" y="0"
   <feComposite in="SourceGraphic" in2="holes" operator="out"/>
 </filter>`;
 
-// The rod and the cast line. Inside the circle they are knocked out; outside they are printed.
-const ROD = `M 1742 2524 L 1150 1840`;
-const LINE = `M 1150 1840 C 1500 1080 2600 1150 2900 2100 C 2962 2292 2966 2424 2950 2560`;
-const TIP = `M 2950 2560 L 2938 2700`;
+// The rod and the cast line. Inside the circle they are knocked out; outside they are printed,
+// so the rod tip and the top of the line break out past the sun the way the original's does.
+const ROD = `M 1958 2404 L 2744 1836`;
+const LINE = `M 2744 1836 C 2806 2096 2742 2374 2566 2606`;
 
-// The angler: simple heavy strokes read as a silhouette at any size.
+// The lake behind him: the horizon splits the sun, then broken ripple lines to the bottom of it.
+const LAKE = `
+  <path d="M 806 2262 L 2794 2262" stroke-width="14"/>
+  <path d="M 2060 2372 L 2600 2372 M 980 2372 L 1420 2372" stroke-width="18"/>
+  <path d="M 880 2756 L 1540 2756 M 1690 2756 L 2720 2756
+           M 980 2908 L 1700 2908 M 1860 2908 L 2630 2908
+           M 1070 3062 L 1840 3062 M 1980 3062 L 2520 3062
+           M 1280 3200 L 1860 3200 M 1990 3200 L 2340 3200"
+        stroke-width="34" stroke-linecap="round"/>
+  <g fill="none" stroke-width="22">
+    <path d="M 2452 2624 Q 2566 2670 2680 2624"/><path d="M 2386 2692 Q 2566 2756 2746 2692"/>
+  </g>`;
+
+// The dock he is sitting on: deck running out from the left of the sun, posts down into the water.
+const DOCK = `
+  <path d="M 806 2488 L 1930 2488 L 1930 2572 L 806 2572 Z"/>
+  <path d="M 1148 2566 L 1192 2566 L 1192 2700 L 1148 2700 Z M 1638 2566 L 1682 2566 L 1682 2694 L 1638 2694 Z
+           M 1840 2566 L 1884 2566 L 1884 2690 L 1840 2690 Z"/>`;
+
+// The angler, seated at the end of the dock in a ball cap, legs hanging over the edge.
 const ANGLER = `
-  <circle cx="1806" cy="2306" r="86"/>
-  <path d="M 1700 2262 L 1912 2262" stroke-width="30" stroke-linecap="round"/>
-  <path d="M 1804 2392 L 1792 2636" stroke-width="104" stroke-linecap="round"/>
-  <path d="M 1792 2636 L 1726 2846 M 1792 2636 L 1874 2842" stroke-width="62" stroke-linecap="round"/>
-  <path d="M 1808 2436 L 1736 2524 M 1812 2424 L 1906 2386" stroke-width="54" stroke-linecap="round"/>`;
-
-// A small flat-bottom boat and the water it sits in.
-const BOAT = `
-  <path d="M 1398 2846 L 2238 2846 Q 2170 2994 1800 2998 Q 1466 2994 1398 2846 Z"/>
-  <path d="M 1452 3042 Q 1640 3094 1836 3042 M 1932 3058 Q 2080 3100 2224 3058 M 1402 3146 Q 1596 3194 1788 3146 M 1880 3160 Q 2026 3200 2160 3160"
-        fill="none" stroke-width="26" stroke-linecap="round"/>`;
+  <circle cx="1818" cy="2196" r="76"/>
+  <path d="M 1748 2168 A 78 78 0 0 1 1894 2156 L 1902 2176 L 1996 2192 L 1888 2212 Z"/>
+  <path d="M 1800 2258 L 1812 2300" stroke-width="54" stroke-linecap="round"/>
+  <path d="M 1796 2298 C 1764 2360 1766 2440 1788 2500 L 1872 2498 C 1878 2428 1872 2344 1856 2286 Z"/>
+  <path d="M 1800 2496 L 1944 2520" stroke-width="66" stroke-linecap="round"/>
+  <path d="M 1944 2520 L 1962 2706 M 1962 2706 L 2026 2716" stroke-width="52" stroke-linecap="round"/>
+  <path d="M 1792 2502 L 1912 2534" stroke-width="58" stroke-linecap="round"/>
+  <path d="M 1912 2534 L 1926 2714 M 1926 2714 L 1986 2724" stroke-width="46" stroke-linecap="round"/>
+  <path d="M 1820 2318 L 1888 2378" stroke-width="48" stroke-linecap="round"/>
+  <path d="M 1888 2378 L 1966 2402" stroke-width="42" stroke-linecap="round"/>`;
 
 const art = (d, v) => `<defs>
   ${DISTRESS}
   <mask id="knock" maskUnits="userSpaceOnUse" x="0" y="0" width="${PW}" height="${PH}">
     <circle cx="${CX}" cy="${CY}" r="${R}" fill="#fff"/>
-    <g fill="#000" stroke="#000"><g transform="translate(${CX} 3000) scale(1.24) translate(${-CX} -3000)">${ANGLER}${BOAT}</g>
-      <path d="${ROD}" fill="none" stroke-width="46" stroke-linecap="round"/>
-      <path d="${LINE}${TIP}" fill="none" stroke-width="28"/></g>
+    <g fill="#000" stroke="#000">${DOCK}<g transform="translate(1850 2560) scale(1.16) translate(-1850 -2560)">${ANGLER}</g><g fill="none" stroke-linecap="butt">${LAKE}</g>
+      <path d="${ROD}" fill="none" stroke-width="40" stroke-linecap="round"/>
+      <path d="${LINE}" fill="none" stroke-width="26"/></g>
   </mask>
   <mask id="outside" maskUnits="userSpaceOnUse" x="0" y="0" width="${PW}" height="${PH}">
     <rect width="${PW}" height="${PH}" fill="#fff"/><circle cx="${CX}" cy="${CY}" r="${R}" fill="#000"/>
@@ -88,7 +106,7 @@ const art = (d, v) => `<defs>
 <g filter="url(#distress)" fill="${INK[v]}">
   <circle cx="${CX}" cy="${CY}" r="${R}" mask="url(#knock)"/>
   <g mask="url(#outside)" fill="none" stroke="${INK[v]}" stroke-linecap="round">
-    <path d="${ROD}" stroke-width="46"/><path d="${LINE}${TIP}" stroke-width="28"/>
+    <path d="${ROD}" stroke-width="40"/><path d="${LINE}" stroke-width="26"/>
   </g>
   <text id="top" font-family="Barlow Condensed" font-weight="700" font-size="300">
     <textPath href="#arc" startOffset="50%" text-anchor="middle">${d.top.replace(/'/g, "’")}</textPath></text>

@@ -2,7 +2,7 @@
 
 ![All five on the navy hoodie](classic-04-concepts.jpg)
 
-Same look as the proven seller: navy pullover hoodie, worn gold print, arched caps on top, a big sun circle with an angler casting from a small boat, and a script punchline underneath. Only the joke changes: five original fishing puns (the original's phrase is not used). No logo on the front; GiggleMe goes on the inside back neck label.
+Same look as the proven seller: navy pullover hoodie, worn gold print, arched caps on top, a big sun circle with an angler fishing from the end of a dock over a wide lake, and a script punchline underneath. Only the joke changes: five original fishing puns (the original's phrase is not used). No logo on the front; GiggleMe goes on the inside back neck label.
 
 | # | Top line | Punchline | Why it should sell |
 |---|---|---|---|
