@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4500 5400">
+      <text x="2250" y="1150" data-w="3600" text-anchor="middle" font-family="Barlow Condensed" font-weight="800" font-size="800" fill="#141414">SIDE QUEST</text>
+      <rect x="450" y="1450" width="3600" height="2650" fill="none" stroke="#141414" stroke-width="60"/>
+      <rect x="560" y="1560" width="3380" height="2430" fill="none" stroke="#141414" stroke-width="25"/>
+      <text x="730" y="1930" font-family="'Press Start 2P'" font-size="170" fill="#E0A100">NEW QUEST:</text>
+      <text x="730" y="2270" font-family="'Press Start 2P'" font-size="200" fill="#141414">Show up to the</text>
+      <text x="730" y="2550" font-family="'Press Start 2P'" font-size="200" fill="#141414">family thing.</text>
+      <text x="730" y="3000" font-family="'Press Start 2P'" font-size="130" fill="#4A4A4A">REWARD: free food</text>
+      <text x="730" y="3250" font-family="'Press Start 2P'" font-size="130" fill="#4A4A4A">XP: +0</text>
+      <polygon points="830,3570 830,3770 970,3670" fill="#E0A100"/>
+      <text x="1050" y="3745" font-family="'Press Start 2P'" font-size="150" fill="#141414">ACCEPT</text>
+      <text x="2600" y="3745" font-family="'Press Start 2P'" font-size="150" fill="#4A4A4A" opacity="0.55">DECLINE</text>
+      <line x1="2580" y1="3680" x2="3720" y2="3680" stroke="#4A4A4A" stroke-width="30" opacity="0.55"/>
+      <text x="2250" y="4500" data-w="2232" text-anchor="middle" font-family="'Press Start 2P'" font-size="120" fill="#4A4A4A">(NOT BY CHOICE)</text>
+      <g transform="translate(1623.1 4631.4) scale(0.4685)"><g fill="#111111" transform="translate(18 18)"><text x="1300" y="820" text-anchor="middle" font-family="Yellowtail"><tspan font-size="600">G</tspan><tspan font-size="300">iggle</tspan><tspan font-size="600">M</tspan><tspan font-size="300">e</tspan></text></g><g fill="none" stroke="#B8955A" stroke-width="60" stroke-linejoin="round"><text x="1300" y="820" text-anchor="middle" font-family="Yellowtail"><tspan font-size="600">G</tspan><tspan font-size="300">iggle</tspan><tspan font-size="600">M</tspan><tspan font-size="300">e</tspan></text></g><g fill="none" stroke="#111111" stroke-width="33" stroke-linejoin="round"><text x="1300" y="820" text-anchor="middle" font-family="Yellowtail"><tspan font-size="600">G</tspan><tspan font-size="300">iggle</tspan><tspan font-size="600">M</tspan><tspan font-size="300">e</tspan></text></g><g fill="#4A4E55"><text x="1300" y="820" text-anchor="middle" font-family="Yellowtail"><tspan font-size="600">G</tspan><tspan font-size="300">iggle</tspan><tspan font-size="600">M</tspan><tspan font-size="300">e</tspan></text></g></g></svg>
