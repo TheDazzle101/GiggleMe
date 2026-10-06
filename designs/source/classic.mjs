@@ -1,12 +1,11 @@
 // Classic 01: the proven top-seller look (big white bold condensed caps, centered, three lines,
-// royal blue heather tee) with original GiggleMe phrases and the GiggleMe wordmark underneath.
+// royal blue heather tee) with original GiggleMe phrases. The brand goes on the inside neck label (printful-pack.mjs).
 // Run: npm install && node classic.mjs   → ../classic-01/<design>/ and ../previews/classic-01-concepts.jpg
 import { chromium } from "playwright";
 import { execFileSync } from "node:child_process";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { wordmarkAt } from "./brandmark.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const out = resolve(here, "..", "classic-01");
@@ -35,17 +34,14 @@ const PW = 3600, PH = 4800, CX = PW / 2, TEXT_W = 3300, TOP = 260;
 const INK = { dark: "#FFFFFF", light: "#151515" };
 
 // Lines at one font size, centered like the original. The browser scales the block to TEXT_W wide
-// and parks the GiggleMe wordmark under it.
+// and parks it at the top of the canvas.
 const art = (d, v) => `
   <g id="block" font-family="Barlow Semi Condensed" font-weight="700" font-size="200" text-anchor="middle" fill="${INK[v]}" letter-spacing="2">
     ${d.lines.map((l, i) => `<text x="0" y="${i * 232}">${l.replace(/'/g, "’")}</text>`).join("")}
-  </g>
-  <g id="tag">${wordmarkAt(0, 0, 900)}</g>`;
+  </g>`;
 const LAYOUT = `
 const b = document.getElementById("block"), bb = b.getBBox(), k = ${TEXT_W} / bb.width;
-b.setAttribute("transform", "translate(${CX} " + (${TOP} - bb.y * k) + ") scale(" + k + ")");
-const bottom = ${TOP} + bb.height * k;
-document.getElementById("tag").setAttribute("transform", "translate(${CX} " + (bottom + 420) + ")");`;
+b.setAttribute("transform", "translate(${CX} " + (${TOP} - bb.y * k) + ") scale(" + k + ")");`;
 
 const html = (body, w, h, bg, script = "") => `<!doctype html><html><head><meta charset="utf-8"><style>${FONTS} html,body{margin:0;background:${bg}} svg{display:block}</style></head><body>
 <svg id="art" xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">${body}</svg>
