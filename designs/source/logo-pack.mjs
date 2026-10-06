@@ -34,7 +34,7 @@ const BG = { dark: "radial-gradient(circle at 50% 45%, #2A2D33, #0E0E10 75%)", r
 const FILES = [
   ["profile-picture", 1080, 1080, BG.dark, "word", 0.83, "Profile picture: TikTok, Instagram, YouTube, Facebook, X, Threads, Pinterest, Google"],
   ["profile-picture-monogram", 1080, 1080, BG.dark, "mono", 0.62, "Profile picture when it shows very small, and Shopify favicon"],
-  ["youtube-banner", 2560, 1440, BG.dark, "full", 0.28, "YouTube banner (logo sits inside the 1546 × 423 safe area for phones)"],
+  // The YouTube banner now comes from social-kit.mjs.
   ["facebook-cover", 1640, 624, BG.dark, "full", 0.42, "Facebook cover photo"],
   ["x-header", 1500, 500, BG.dark, "full", 0.4, "X (Twitter) header"],
   ["linkedin-banner", 1584, 396, BG.dark, "full", 0.32, "LinkedIn banner"],
