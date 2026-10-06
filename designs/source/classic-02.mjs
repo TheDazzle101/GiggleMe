@@ -1,12 +1,11 @@
 // Classic 02: the proven flex tank look (distressed white bold condensed caps, centered, four lines,
-// royal blue tank) with original GiggleMe gym phrases and the GiggleMe wordmark underneath.
+// royal blue tank) with original GiggleMe gym phrases. The brand goes on the inside neck label (printful-pack.mjs).
 // Run: npm install && node classic-02.mjs   → ../classic-02/<design>/ and ../previews/classic-02-concepts.jpg
 import { chromium } from "playwright";
 import { execFileSync } from "node:child_process";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { wordmarkAt } from "./brandmark.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const out = resolve(here, "..", "classic-02");
@@ -35,7 +34,6 @@ const PW = 3600, PH = 4800, CX = PW / 2, TEXT_W = 2900, TOP = 260;
 const INK = { dark: "#FFFFFF", light: "#151515" };
 
 // Worn, cracked ink like the original: two noise layers punch holes through the letters.
-// The wordmark stays clean so the brand reads.
 const DISTRESS = `<defs><filter id="distress" filterUnits="userSpaceOnUse" x="0" y="0" width="${PW}" height="${PH}">
   <feTurbulence type="fractalNoise" baseFrequency="0.022" numOctaves="4" seed="11" result="big"/>
   <feColorMatrix in="big" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  13 0 0 0 -8.1" result="blotches"/>
@@ -48,13 +46,10 @@ const DISTRESS = `<defs><filter id="distress" filterUnits="userSpaceOnUse" x="0"
 const art = (d, v) => `${DISTRESS}
   <g filter="url(#distress)"><g id="block" font-family="Barlow Condensed" font-weight="700" font-size="200" text-anchor="middle" fill="${INK[v]}" letter-spacing="3">
     ${d.lines.map((l, i) => `<text x="0" y="${i * 226}">${l.replace(/'/g, "’")}</text>`).join("")}
-  </g></g>
-  <g id="tag">${wordmarkAt(0, 0, 820)}</g>`;
+  </g></g>`;
 const LAYOUT = `
 const b = document.getElementById("block"), bb = b.getBBox(), k = Math.min(${TEXT_W} / bb.width, 3000 / bb.height);
-b.setAttribute("transform", "translate(${CX} " + (${TOP} - bb.y * k) + ") scale(" + k + ")");
-const bottom = ${TOP} + bb.height * k;
-document.getElementById("tag").setAttribute("transform", "translate(${CX} " + (bottom + 400) + ")");`;
+b.setAttribute("transform", "translate(${CX} " + (${TOP} - bb.y * k) + ") scale(" + k + ")");`;
 
 const html = (body, w, h, bg, script = "") => `<!doctype html><html><head><meta charset="utf-8"><style>${FONTS} html,body{margin:0;background:${bg}} svg{display:block}</style></head><body>
 <svg id="art" xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">${body}</svg>

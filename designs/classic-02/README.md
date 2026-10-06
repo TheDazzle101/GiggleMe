@@ -2,7 +2,7 @@
 
 ![All five on the royal blue tank](../previews/classic-02-concepts.jpg)
 
-Same style as the proven flex tank top seller: distressed white bold condensed capitals, four centered lines, royal blue tank, no graphics. The difference is our own gym joke and the GiggleMe wordmark under it. None reuse the original's phrase.
+Same style as the proven flex tank top seller: distressed white bold condensed capitals, four centered lines, royal blue tank, no graphics. The difference is our own gym joke. The front has no logo: GiggleMe goes on the inside back neck label, like the original's brand label. None reuse the original's phrase.
 
 | # | Phrase | Why it should sell |
 |---|---|---|
@@ -12,10 +12,15 @@ Same style as the proven flex tank top seller: distressed white bold condensed c
 | 4 | DO YOU / EVEN / SLEEVE / BRO? | Twists the "do you even lift" meme everyone already knows. |
 | 5 | I'M NOT / SHOWING OFF / MY ARMS / NEED AIR | A fake excuse for showing off. Gym, beach and cookouts. |
 
-Each folder has:
-- `print-dark-shirts.png`: distressed white text for **royal blue, black, navy, charcoal**. 3600 × 4800 px, 300 DPI, transparent. Upload this to Printful.
-- `print-light-shirts.png`: distressed black text for **white, sand, light heather**.
-- `design-*.svg`: editable vector versions (the worn texture is an SVG filter).
-- `mockup-royal.png`, `mockup-black.png`, `mockup-white.png`: tank top previews.
+## Upload to Printful
 
-Font: Barlow Condensed Bold (SIL OFL, safe for products you sell). The worn texture is generated, so the holes are real transparency in the print file. To change a phrase, edit `source/classic-02.mjs` and run `node classic-02.mjs`.
+Everything to upload is in **`printful-upload/`**, one file per design and shirt color:
+- `classic-02-<design>-FRONT-dark-shirts.png`: distressed white text for **royal blue, black, navy, charcoal**.
+- `classic-02-<design>-FRONT-light-shirts.png`: distressed black text for **white, sand, light heather**.
+- `giggleme-inside-label-dark-shirts.png` / `-light-shirts.png`: the GiggleMe logo for the inside back neck label (900 × 339 px, Printful's 3 × 1.13 in logo area at 300 DPI). Printful adds the size, origin and fabric text itself.
+
+Front files are transparent, 300 DPI and trimmed to the art (about 10 in wide), so they drop into any tee or tank print area. Center them at the top of the front.
+
+Each design folder also has editable `design-*.svg` files, full-canvas `print-*.png` files (3600 × 4800) and `mockup-royal/black/white.png` previews.
+
+Font: Barlow Condensed Bold (SIL OFL, safe for products you sell). To change a phrase, edit `source/classic-02.mjs`, run `node classic-02.mjs`, then `node printful-pack.mjs classic-02`.
