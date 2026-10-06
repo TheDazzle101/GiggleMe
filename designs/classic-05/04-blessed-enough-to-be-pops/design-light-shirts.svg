@@ -1,0 +1,14 @@
+<svg id="art" xmlns="http://www.w3.org/2000/svg" width="3600" height="4800" viewBox="0 0 3600 4800"><defs><filter id="distress" filterUnits="userSpaceOnUse" x="0" y="0" width="3600" height="4800">
+  <feTurbulence type="fractalNoise" baseFrequency="0.022" numOctaves="4" seed="21" result="big"></feTurbulence>
+  <feColorMatrix in="big" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  13 0 0 0 -8.3" result="blotches"></feColorMatrix>
+  <feTurbulence type="fractalNoise" baseFrequency="0.16" numOctaves="2" seed="7" result="fine"></feTurbulence>
+  <feColorMatrix in="fine" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  16 0 0 0 -10.4" result="specks"></feColorMatrix>
+  <feMerge result="holes"><feMergeNode in="blotches"></feMergeNode><feMergeNode in="specks"></feMergeNode></feMerge>
+  <feComposite in="SourceGraphic" in2="holes" operator="out"></feComposite>
+</filter></defs>
+  <g filter="url(#distress)"><g id="block" text-anchor="middle" fill="#151515" transform="translate(1800 260) scale(2.5330501859063816)">
+    <text id="l0" x="0" font-family="Barlow Condensed" font-weight="700" letter-spacing="4" font-size="141.5071990734648" y="142">BLESSED</text>
+    <text id="l1" x="0" font-family="Barlow Condensed" font-weight="700" letter-spacing="4" font-size="336.92190255586854" y="529">ENOUGH</text>
+    <text id="l2" x="0" font-family="Yellowtail" font-size="252.6914269169014" y="801.36">to be</text>
+    <text id="l3" x="0" font-family="Barlow Condensed" font-weight="700" letter-spacing="4" font-size="518.9329441336253" y="1356.6896000000002">POPS</text>
+  </g></g></svg>

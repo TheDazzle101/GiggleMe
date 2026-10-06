@@ -1,0 +1,14 @@
+<svg id="art" xmlns="http://www.w3.org/2000/svg" width="3600" height="4800" viewBox="0 0 3600 4800"><defs><filter id="distress" filterUnits="userSpaceOnUse" x="0" y="0" width="3600" height="4800">
+  <feTurbulence type="fractalNoise" baseFrequency="0.022" numOctaves="4" seed="21" result="big"></feTurbulence>
+  <feColorMatrix in="big" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  13 0 0 0 -8.3" result="blotches"></feColorMatrix>
+  <feTurbulence type="fractalNoise" baseFrequency="0.16" numOctaves="2" seed="7" result="fine"></feTurbulence>
+  <feColorMatrix in="fine" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  16 0 0 0 -10.4" result="specks"></feColorMatrix>
+  <feMerge result="holes"><feMergeNode in="blotches"></feMergeNode><feMergeNode in="specks"></feMergeNode></feMerge>
+  <feComposite in="SourceGraphic" in2="holes" operator="out"></feComposite>
+</filter></defs>
+  <g filter="url(#distress)"><g id="block" text-anchor="middle" fill="#FFFFFF" transform="translate(1800 260) scale(3.0484900447746974)">
+    <text id="l0" x="0" font-family="Barlow Condensed" font-weight="700" letter-spacing="4" font-size="116.2760518051338" y="116">THEY SAY</text>
+    <text id="l1" x="0" font-family="Barlow Condensed" font-weight="700" letter-spacing="4" font-size="276.84774239317574" y="438">GRUMPY</text>
+    <text id="l2" x="0" font-family="Yellowtail" font-size="207.6358067948818" y="661.2">I say</text>
+    <text id="l3" x="0" font-family="Barlow Condensed" font-weight="700" letter-spacing="4" font-size="332.21729087181086" y="1023.552">GRAMPY</text>
+  </g></g></svg>

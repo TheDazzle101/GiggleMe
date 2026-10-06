@@ -1,0 +1,14 @@
+<svg id="art" xmlns="http://www.w3.org/2000/svg" width="3600" height="4800" viewBox="0 0 3600 4800"><defs><filter id="distress" filterUnits="userSpaceOnUse" x="0" y="0" width="3600" height="4800">
+  <feTurbulence type="fractalNoise" baseFrequency="0.022" numOctaves="4" seed="21" result="big"></feTurbulence>
+  <feColorMatrix in="big" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  13 0 0 0 -8.3" result="blotches"></feColorMatrix>
+  <feTurbulence type="fractalNoise" baseFrequency="0.16" numOctaves="2" seed="7" result="fine"></feTurbulence>
+  <feColorMatrix in="fine" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  16 0 0 0 -10.4" result="specks"></feColorMatrix>
+  <feMerge result="holes"><feMergeNode in="blotches"></feMergeNode><feMergeNode in="specks"></feMergeNode></feMerge>
+  <feComposite in="SourceGraphic" in2="holes" operator="out"></feComposite>
+</filter></defs>
+  <g filter="url(#distress)"><g id="block" text-anchor="middle" fill="#FFFFFF" transform="translate(1800 260) scale(3.037782418834251)">
+    <text id="l0" x="0" font-family="Barlow Condensed" font-weight="700" letter-spacing="4" font-size="101.00782359705093" y="101">WHAT I DO</text>
+    <text id="l1" x="0" font-family="Barlow Condensed" font-weight="700" letter-spacing="4" font-size="240.4948180882165" y="383">BEST</text>
+    <text id="l2" x="0" font-family="Yellowtail" font-size="180.37111356616236" y="576.4">is being</text>
+    <text id="l3" x="0" font-family="Barlow Condensed" font-weight="700" letter-spacing="4" font-size="288.5937817058598" y="892.064">GRANDPA</text>
+  </g></g></svg>
